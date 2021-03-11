@@ -1,4 +1,4 @@
-//@author - Timoteo Sanchez, Juan Pablo Senmartin, Pedro Elizalde
+package TPNumRom;//@author - Timoteo Sanchez, Juan Pablo Senmartin, Pedro Elizalde
 
 import java.util.HashMap;
 import java.util.Scanner;

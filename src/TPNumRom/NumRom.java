@@ -12,7 +12,7 @@ public class NumRom {
 
     }
     public static int romanToInt(String input) {
-        int result = 0;                                                         // Create local variable to storage int's
+        int result = 0;                                                         // Create local variable to store int's
         if (input.length() != 1) {                                              // If more than one letter,
             for (int i = 0; i < input.length() - 1; i++) {                      // for each one,
                     if (romanNumsInfo().get(input.charAt(i)) != null) {         // if's not null,

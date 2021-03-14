@@ -1,0 +1,7 @@
+Algoritmo de Selección: consiste en buscar en el array el menor elemento y posicionarlo en la primer casilla. Luego,
+repite este proceso, fijando la primer casilla.
+
+Algoritmo de Burbujeo: este compara el elemento siguiente con el actual, y los intercambia si el siguiente es menor al actual
+
+Algoritmo de Insercción: por cada vuelta, este algoritmo, compara con los ordenados anteriormente y lo posiciona en el lugar
+correcto.

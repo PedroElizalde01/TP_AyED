@@ -1,0 +1,68 @@
+Especificar formalmente los siguientes problemas:
+1. Calcular el logaritmo de un numero real
+Nombre: Logaritmo
+Dominio: Numeros reales
+Codominio: Numeros Reales
+Precondicion: x ∈ R / x > 0;
+Postcondicion: x
+
+2. Indicar si dos vectores son iguales
+Nombre: Comparación de vectores
+Dominio: Vectores
+Codominio: Verdadero o Falso
+Precondición: No tiene  // revisar
+Postcondición: No tiene // revisar
+
+3. Decidir si un vector se encuentra ordenado
+Nombre: Decidir si un vector está ordenado
+Dominio: Vectores
+Codominio: Verdadero o Falso
+Precondición: No tiene
+Postcondición: No tiene
+
+Especificar métodos que resuelvan los siguiente problemas
+1. Calcular el inverso de un número (elevarlo a la menos uno)
+Nombre: Calculadora del inverso de un número
+Dominio: Números Reales
+Codominio: Números Reales
+Precondicion: No tiene
+Postcondicion: No tiene
+
+2. Calcular el factorial de un número
+Nombre: Calculadora del factorial de un numero
+Descripcion: Multiplicar todos los numeros entre el uno y él.
+Dominio: Números Naturales
+Codominio: Números Naturales
+Precondicion: No tiene
+Postcondicion: {x ∈ N / x ≠ 0}
+
+3. Calcular el valor absoluto de un número
+Nombre: Calculadora del valor absoluto de un número
+Descripcion: Calcula la distancia del número al cero
+Dominio: Números Reales
+Codominio: Números Reales
+Precondicion: No tiene
+Postcondicion: {x ∈ R/ x >= 0}
+
+Especificar métodos que resuelvan los siguientes problemas:
+1. Dadas las ecuaciones de dos rectas informar si son coincidentes, paralelas o se cortan en un punto.
+Nombre: Calcular la intersección
+Dominio: R^2
+Codominio: Coincidente, Paralelas o se Cortan
+Precondicion: Recta
+Postcondicion: No tiene
+
+2. Retornar el elemento que se encuentra en la i-ésima posición de un vector de N posiciones.
+Nombre: Buscador en vector dada la posición
+Dominio: Números Naturales X Vectores
+Codominio: Elemento
+Precondicion: i < N, siendo i la posicion buscada y N el largo del vector.
+Postcondicion: No tiene /revisar
+
+3. Hallar las raíces de la ecuación de segundo grado 2xa + bx + c = 0.
+Nombre: Calculadora de raices
+Descripción: Encuentra las raices de una funcion de segundo grado usando la formula de la resolvente
+Dominio: {a, b, c}
+Codominio: Puntos en R^2
+Precondicion: a, b y c ∈ R
+Postcondicion:

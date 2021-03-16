@@ -1,6 +1,7 @@
 package TP_ComparaciónAlgoritmos;
 
 public class Ejercicio2c {
+    //Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
     public static void main(String[] args) {
         Integer[] arrayToSort= randomArray(100);
         long currentTime= System.currentTimeMillis();

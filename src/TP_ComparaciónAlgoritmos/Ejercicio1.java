@@ -1,6 +1,7 @@
 package TP_ComparaciónAlgoritmos;
 
 public class Ejercicio1 {
+    //Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
 
     public int SeqSearch ( int a[], int k) {
            for (int i = 0; i < a.length; i++)

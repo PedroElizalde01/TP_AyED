@@ -3,6 +3,7 @@ package TP_ComparaciónAlgoritmos;
 import java.util.ArrayList;
 
 public class Insertion {
+    //Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
     public static <T> T[] insertionSort(Comparable<T>[] array){
         Comparable <T> min;
         for (int i = 1; i <array.length; i++) {

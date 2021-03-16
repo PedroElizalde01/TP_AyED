@@ -3,6 +3,8 @@ package TP_ComparaciónAlgoritmos;
 import java.util.ArrayList;
 
 public class Burbujeo {
+    //Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
+
     public static void main(String[] args) {
         Integer[] array= {3,2,1,3,5,6,8,9};
         Integer[] sortedArray= bubbleSort(array);

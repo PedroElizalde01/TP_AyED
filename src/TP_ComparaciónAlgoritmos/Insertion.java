@@ -17,7 +17,7 @@ public class Insertion {
         }
         return (T[]) array;
     }
-    public static <T> ArrayList<Comparable<T>> insertionSort(ArrayList<Comparable<T>> array){
+    public static <T> ArrayList<Comparable<T>> insertionListSort(ArrayList<Comparable<T>> array){
         Comparable <T> min;
         for (int i = 1; i <array.size(); i++) {
             min = array.get(i);

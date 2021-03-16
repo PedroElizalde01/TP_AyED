@@ -5,13 +5,14 @@ import java.util.ArrayList;
 public class Selection {
     //b) Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
     public static void main(String[] args) {
-        Integer[] a = {3, 1, 4, 2, 7};
-        ArrayList<Comparable<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < a.length; i++) {
-            list.add(a[i]);
+        Integer[] a = {3, 9, 4, 7, 5, 2};
+        String[] b = {"hola", "f", "a"};
+        ArrayList<Comparable<String>> list = new ArrayList<>();
+        for (int i = 0; i < b.length; i++) {
+            list.add(b[i]);
         }
-        ArrayList<Comparable<Integer>> list2 = new ArrayList<>();
-        ArrayList<Comparable<Integer>> newArray = recursiveSeleccionListSort(list, 0, list2, list.size());
+        ArrayList<Comparable<String>> list2 = new ArrayList<>();
+        ArrayList<Comparable<String>> newArray = recursiveSeleccionListSort(list, 0, list2, list.size());
         for (int i = 0; i < newArray.size(); i++) {
             System.out.println(newArray.get(i));
         }
@@ -56,10 +57,11 @@ public class Selection {
         if (count >= repetitions) {
             return listToReturn;
         }
-        Comparable<T> min = minSearcher(list, 1, list.get(0));
+        Comparable<T> min = minSearcher(list, 0 , list.get(0));
         int lastMin= list.indexOf(min);
         listToReturn.add(count, min);
         list.remove(lastMin);
+
 
         count++;
         recursiveSeleccionListSort(list, count, listToReturn, repetitions);
@@ -72,8 +74,8 @@ public class Selection {
                 min = list.get(lookedUpTo);
             }
             lookedUpTo++;
-            minSearcher(list, lookedUpTo, min);
+            return (minSearcher(list, lookedUpTo, min));
         }
-            return min;
+        return min;
     }
 }

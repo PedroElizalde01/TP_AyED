@@ -3,20 +3,7 @@ package TP_ComparaciónAlgoritmos;
 import java.util.ArrayList;
 
 public class Selection {
-    //b) Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
-    public static void main(String[] args) {
-        Integer[] a = {3, 9, 4, 7, 5, 2};
-        String[] b = {"hola", "f", "a"};
-        ArrayList<Comparable<String>> list = new ArrayList<>();
-        for (int i = 0; i < b.length; i++) {
-            list.add(b[i]);
-        }
-        ArrayList<Comparable<String>> list2 = new ArrayList<>();
-        ArrayList<Comparable<String>> newArray = recursiveSeleccionListSort(list, 0, list2, list.size());
-        for (int i = 0; i < newArray.size(); i++) {
-            System.out.println(newArray.get(i));
-        }
-    }
+    // Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
 
     public static <T> T[] selectionSort(Comparable<T> array[]) {
         int indexOfMin = 0;

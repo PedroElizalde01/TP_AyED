@@ -5,26 +5,14 @@ import java.util.ArrayList;
 public class Burbujeo {
     //Authors: Pedro Elizalde Acevedo, Juan Pablo Senmartin, Timoteo Sanchez Varsallona
 
-    public static void main(String[] args) {
-        Integer[] array= {3,2,1,3,5,6,8,9};
-        ArrayList<Comparable<Integer>> list= new ArrayList<>();
-        for (int i = 0; i <array.length ; i++) {
-            list.add(array[i]);
-        }
-        ArrayList<Comparable<Integer>> sortedList= bubbleListSort(list);
-        for (int i = 0; i <sortedList.size() ; i++) {
-            System.out.println(list.get(i));
-        }
-    }
-
     public static <T>  T[] bubbleSort(Comparable<T> array[]){
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j < array.length; j++) {
                 if (array[j - 1].compareTo((T) array[j]) > 0) {
                     Comparable<T> bigger = array[j - 1];
                     array[j - 1] = array[j];
-                    array[j] = bigger;                                            // if compareTo() is 0 or less it means
-                    // that it is smaller than the next
+                    array[j] = bigger;       // if compareTo() is 0 or less it means
+                                            // that it is smaller than the next
                 }
             }
         }
@@ -39,8 +27,8 @@ public class Burbujeo {
                     list.remove(j+1);
                     list.add(j, bigger);
                     list.remove(j+1);
-                    // if compareTo() is 0 or less it means
-                                                                                    // that it is smaller than the next
+                                                // if compareTo() is 0 or less it means
+                                                // that it is smaller than the next
                 }
             }
         }

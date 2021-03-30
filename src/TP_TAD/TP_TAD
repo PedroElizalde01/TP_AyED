@@ -25,7 +25,7 @@ Especificar métodos que resuelvan los siguiente problemas
 Nombre: Calculadora del inverso de un número
 Dominio: Números Reales
 Codominio: Números Reales
-Precondicion: No tiene
+Precondicion: {x ∈ R / x ≠ 0}
 Postcondicion: No tiene
 
 2. Calcular el factorial de un número
@@ -59,10 +59,10 @@ Codominio: Elemento
 Precondicion: i < N, siendo i la posicion buscada y N el largo del vector.
 Postcondicion: No tiene /revisar
 
-3. Hallar las raíces de la ecuación de segundo grado 2xa + bx + c = 0.
+3. Hallar las raíces de la ecuación de segundo grado ax^2 + bx + c = 0.
 Nombre: Calculadora de raices
 Descripción: Encuentra las raices de una funcion de segundo grado usando la formula de la resolvente
 Dominio: {a, b, c}
-Codominio: Puntos en R^2
+Codominio: Punto/s en R^2 o null
 Precondicion: a, b y c ∈ R
 Postcondicion:

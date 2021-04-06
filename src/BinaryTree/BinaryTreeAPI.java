@@ -15,14 +15,18 @@ public class BinaryTreeAPI <T> {
     }
 
     public int numeroDeHojas(BinaryTree<T> a) {
+        return auxiliar(a, 0);
+    }
+
+    public int auxiliar(BinaryTree<T> a, int counter) {
         if (!a.isEmpty()) {
-            if (a.getLeft() == null && a.getRight() == null) {
-                return 1;
-            } else {
-                return numeroDeHojas(a.getLeft()) + numeroDeHojas(a.getRight());
+            counter = auxiliar(a.getLeft(), counter);
+            if (a.getLeft().isEmpty() && a.getRight().isEmpty()) {
+                counter++;
             }
+            counter = auxiliar(a.getRight(), counter);
         }
-        return -1;
+        return counter;
     }
 
     public int ocurrenciesOf(BinaryTree<T> a, T o) {
@@ -36,25 +40,25 @@ public class BinaryTreeAPI <T> {
     }
 
     public int getCountOfElementsInALevel(BinaryTree<T> a, int level) {
-        if (a.isEmpty()){
+        if (a.isEmpty()) {
             return 0;
         }
-        if (level == 0){
+        if (level == 0) {
             return 1;
         }
-        return getCountOfElementsInALevel(a.getLeft(), level-1) + getCountOfElementsInALevel(a.getRight(), level - 1);
+        return getCountOfElementsInALevel(a.getLeft(), level - 1) + getCountOfElementsInALevel(a.getRight(), level - 1);
     }
 
 
-    public int height(BinaryTree<T> a){
-        if(!a.isEmpty()){
+    public int height(BinaryTree<T> a) {
+        if (!a.isEmpty()) {
             int heigthLeft = height(a.getLeft());
             int heightRight = height(a.getRight());
-            return 1 + Math.max(heigthLeft,heightRight);
-        }else{
+            return 1 + Math.max(heigthLeft, heightRight);
+        } else {
             return -1;
-            }
         }
+    }
 
     boolean iguales(BinaryTree<T> a1, BinaryTree<T> a2) {
         /* Indica si dos árboles binarios son iguales */
@@ -152,12 +156,11 @@ public class BinaryTreeAPI <T> {
 
     boolean lleno(BinaryTree<T> a) {
         /* Informa si un árbol binario está lleno */
-        int level= height(a);
+        int level = height(a);
         if (!completo(a)) {
             return false;
         } else {
-            ArrayList<T> leaves= new ArrayList<>();
-            leaves= getLeaves(a, leaves);
+
         }
         return true;
     }
@@ -167,30 +170,57 @@ public class BinaryTreeAPI <T> {
     }
 
     private int getLevel(BinaryTree<T> a, T data) {
-        return getLevelUtil(a, data, 1)-1;
+        return getLevelUtil(a, data, 1) - 1;
     }
+
     private int getLevelUtil(BinaryTree<T> a, T data, int level) {
-        if (a.isEmpty()){
+        if (a.isEmpty()) {
             return 0;
         }
-        if (a.getRoot() == data){
+        if (a.getRoot() == data) {
             return level;
         }
         int downlevel = getLevelUtil(a.getLeft(), data, level + 1);
-        if (downlevel != 0){
+        if (downlevel != 0) {
             return downlevel;
         }
         downlevel = getLevelUtil(a.getRight(), data, level + 1);
         return downlevel;
     }
-    public boolean ocurreArbin( BinaryTree<T> a1,  BinaryTree<T> a2 ){ /* Indica si el árbol a2 ocurre en el árbol a1 */
-        if (a1.isEmpty()){
+
+    public boolean ocurreArbin(BinaryTree<T> a1, BinaryTree<T> a2) { /* Indica si el árbol a2 ocurre en el árbol a1 */
+        if (a1.isEmpty()) {
             return false;
         }
-        if(iguales(a1, a2)){
+        if (iguales(a1, a2)) {
             return true;
         }
 
         return ocurreArbin(a1.getLeft(), a2) || ocurreArbin(a1.getRight(), a2);
+    }
+
+    public void mostrarFrontera(BinaryTree<T> a) {
+        if (!a.isEmpty()) {
+            mostrarFrontera(a.getLeft());
+            if (a.getLeft().isEmpty() && a.getRight().isEmpty()) {
+                System.out.println(a.getRoot());
+            }
+            mostrarFrontera(a.getRight());
+        }
+    }
+
+    public ArrayList<T> frontera(BinaryTree<T> a) {
+        return aux_frontera(a, new ArrayList<T>());
+    }
+
+    private ArrayList<T> aux_frontera(BinaryTree<T> a, ArrayList<T> list) {
+        if (!a.isEmpty()) {
+            list = aux_frontera(a.getLeft(), list);
+            if (a.getLeft().isEmpty() && a.getRight().isEmpty()) {
+                list.add(a.getRoot());
+            }
+            list = aux_frontera(a.getRight(), list);
+        }
+        return list;
     }
 }

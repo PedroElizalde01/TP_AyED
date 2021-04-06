@@ -5,6 +5,7 @@ package BinaryTree;
  Date: 30/3/2021/03/2021
  *********************************/
 public class BinaryTree<T> {
+
     private DoubleNode<T> root;
 
     public BinaryTree(T o) {
@@ -13,7 +14,6 @@ public class BinaryTree<T> {
     public BinaryTree(T o, BinaryTree<T> tleft, BinaryTree<T> tright){
         root = new DoubleNode<T>(o,tleft.root, tright.root);
     }
-
     public BinaryTree() {
     }
 

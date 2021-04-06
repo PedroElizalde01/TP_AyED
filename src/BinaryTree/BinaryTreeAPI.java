@@ -1,5 +1,6 @@
 package BinaryTree;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
 
 /*******************************
@@ -160,13 +161,14 @@ public class BinaryTreeAPI <T> {
         if (!completo(a)) {
             return false;
         } else {
-
+            ArrayList<T> leaf = frontera(a);
+            for (int i = 0; i < leaf.size()-1; i++) {
+                if(getLevel(a, leaf.get(i)) != getLevel(a, leaf.get(i + 1))){
+                    return false;
+                }
+            }
         }
         return true;
-    }
-
-    private ArrayList<T> getLeaves(BinaryTree<T> a, ArrayList<T> leaves) {
-        return null;
     }
 
     private int getLevel(BinaryTree<T> a, T data) {
@@ -197,6 +199,21 @@ public class BinaryTreeAPI <T> {
         }
 
         return ocurreArbin(a1.getLeft(), a2) || ocurreArbin(a1.getRight(), a2);
+    }
+
+    public boolean estable (BinaryTree<Comparable <T>> a) throws IllegalClassFormatException {
+        if(a.getRoot().getClass() != Integer.class) throw new IllegalClassFormatException("La clase del Arbol es incompatible");
+        if(a.isEmpty()) return true;
+        if(a.getLeft().isEmpty() && a.getRight().isEmpty()) return true;
+        for (int i = 0; i < peso((BinaryTree<T>) a); i++) {
+            if(a.getRoot().compareTo((T) a.getLeft().getRoot()) > 0){
+                return estable(a.getLeft());
+            }
+            if(a.getRoot().compareTo((T) a.getRight().getRoot()) > 0){
+                return estable(a.getRight());
+            }
+        }
+        return false;
     }
 
     public void mostrarFrontera(BinaryTree<T> a) {

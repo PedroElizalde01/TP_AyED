@@ -1,7 +1,7 @@
 package BinaryTree;
 
 /*******************************
- Auhor/s: Timoteo Sánchez Varsallona
+ Auhor/s: Timoteo Sánchez Varsallon, Juan Pablo Senmartin, Pedro Elizalde Acevedo
  Date: 30/3/2021/03/2021
  *********************************/
 public class BinaryTree<T> {
@@ -28,7 +28,7 @@ public class BinaryTree<T> {
         t.root = root.left;
         return t;
     }
-    public BinaryTree<T> getRight(){
+    public BinaryTree<T> getRight() {
         BinaryTree<T> t = new BinaryTree<T>();
         t.root = root.right;
         return t;

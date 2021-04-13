@@ -29,7 +29,7 @@ public class StackNode <T> implements StackInterface<T> {
     }
 
     @Override
-    public T peek() throws IsEmptyException{
+    public T peek() throws IsEmptyException {
         if(!isEmpty()){
             return (T) top.data;
         }
@@ -46,6 +46,7 @@ public class StackNode <T> implements StackInterface<T> {
 
     @Override
     public void empty() {
-
+        this.top=null;
+        this.size=0;
     }
 }

@@ -17,13 +17,17 @@ public class Queue <T> implements QueueInterface<T> {
         stackArray[0] = (T)element;
     }
     @Override
-    public T dequeue(){
-        T result = stackArray[size-1];
-        T[] smallStackArray =(T[]) new Object[size - 1];
-        for (int i = 0; i < stackArray.length-1; i++) smallStackArray[i] = stackArray[i];
-        this.size = smallStackArray.length;
-        this.stackArray = smallStackArray;
-        return result;
+    public T dequeue() throws IsEmptyException {
+        if(!isEmpty()) {
+
+            T result = stackArray[size-1];
+            T[] smallStackArray =(T[]) new Object[size - 1];
+            for (int i = 0; i < stackArray.length-1; i++) smallStackArray[i] = stackArray[i];
+            this.size = smallStackArray.length;
+            this.stackArray = smallStackArray;
+            return result;
+        }
+        throw new IsEmptyException();
     }
 
     @Override

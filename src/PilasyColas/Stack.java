@@ -19,19 +19,24 @@ public class Stack<T> implements StackInterface {
     }
 
     @Override
-    public void pop() {
-        T[] smallStackArray = (T[]) new Object[size - 1];
-        for (int i = 0; i < smallStackArray.length; i++) smallStackArray[i] = stackArray[i+1];
-        this.size = smallStackArray.length;
-        this.stackArray = smallStackArray;
+    public void pop() throws IsEmptyException {
+        if(!isEmpty()){
+            T[] smallStackArray = (T[]) new Object[size - 1];
+            for (int i = 0; i < smallStackArray.length; i++) smallStackArray[i] = stackArray[i+1];
+            this.size = smallStackArray.length;
+            this.stackArray = smallStackArray;
+        }else{
+            throw new IsEmptyException();
+        }
     }
 
     @Override
-    public T peek() {
+    public T peek() throws IsEmptyException {
         if(!isEmpty()){
-                return stackArray[size-1];
+            return stackArray[0];
+        }else{
+            throw new IsEmptyException();
         }
-        return null;
     }
 
     @Override
@@ -48,5 +53,6 @@ public class Stack<T> implements StackInterface {
     public void empty() {
         T[] emptyStack = (T[])new Object[0];
         this.stackArray = emptyStack;
+        this.size=0;
     }
 }

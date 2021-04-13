@@ -11,9 +11,9 @@ public class StackNode <T> implements StackInterface<T> {
     }
     @Override
     public void stack(T element) {
-        Node<T> temporalNode = new Node(element);
-        temporalNode.next=top;
-        top=temporalNode;
+        Node<T> auxNode = new Node(element);
+        auxNode.next=top;
+        top=auxNode;
         size++;
     }
 

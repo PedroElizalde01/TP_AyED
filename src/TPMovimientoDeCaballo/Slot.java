@@ -67,7 +67,7 @@ public class Slot {
             case 'H':
                 return 8;
             default:
-                throw new IllegalArgumentException("This letter is not a coordinate of the board");
+                throw new IllegalArgumentException("This number does not a correspond to a letter");
         }
     }
 }

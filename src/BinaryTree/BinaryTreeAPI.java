@@ -1,10 +1,13 @@
 package BinaryTree;
 
+import PilasyColas.IsEmptyException;
+import PilasyColas.QueueNode;
+
 import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
 
 /*******************************
- Auhor/s: Timoteo Sánchez Varsallona
+ Auhor/s: Timoteo Sánchez Varsallona, Juan Pablo Senmartin, Pedro Elizlde Acevedo
  Date: 30/3/2021/03/2021
  *********************************/
 public class BinaryTreeAPI <T> {
@@ -239,5 +242,39 @@ public class BinaryTreeAPI <T> {
             list = aux_frontera(a.getRight(), list);
         }
         return list;
+    }
+    public void preorder(BinaryTree<T> a){
+        if(!a.isEmpty()){
+            System.out.println(a.getRoot());
+            preorder(a.getLeft());
+            preorder(a.getRight());
+        }
+    }
+    public void inorder(BinaryTree<T> a){
+        if(!a.isEmpty()){
+            inorder(a.getLeft());
+            System.out.println(a.getRoot());
+            inorder(a.getRight());
+        }
+    }
+    public void postorder(BinaryTree<T> a){
+        if(!a.isEmpty()){
+            postorder(a.getLeft());
+            postorder(a.getRight());
+            System.out.println(a.getRoot());
+        }
+    }
+    public void byLevels(BinaryTree<T> a) throws IsEmptyException {
+        QueueNode<BinaryTree<T>> auxQueue= new QueueNode<BinaryTree<T>>();
+        auxQueue.enqueue(a);
+        while(!auxQueue.isEmpty()){
+            BinaryTree<T> auxTree= auxQueue.dequeue();
+            System.out.println(auxTree.getRoot());
+            if(!auxTree.getLeft().isEmpty()){
+                auxQueue.enqueue(auxTree.getLeft());
+            }if(!auxTree.getRight().isEmpty()){
+                auxQueue.enqueue(auxTree.getRight());
+            }
+        }
     }
 }

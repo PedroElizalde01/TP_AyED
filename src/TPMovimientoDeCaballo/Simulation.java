@@ -11,16 +11,17 @@ import java.util.Scanner;
  **************************************/
 
 public class Simulation {
-    private StackNode<Slot> cola1erMovimiento = new StackNode();
-    private StackNode<Slot> cola2ndoMovimiento = new StackNode();
-    private StackNode<Slot> cola3erMovimiento = new StackNode();
-    private StackNode<Slot> cola4toMovimiento = new StackNode();
+    private StackNode<Slot> stack1stMove = new StackNode<>();
+    private StackNode<Slot> stack2ndMove = new StackNode<>();
+    private StackNode<Slot> stack3rthMove = new StackNode<>();
+    private StackNode<Slot> stack4thMove = new StackNode<>();
+    private Slot startingSlot;
 
 
     public void startSimulation(Board board, Knight knight) throws IsEmptyException {
         int salto = 1;
         Scanner scanner = new Scanner(System.in);
-        while (salto <= 4) {
+        while (jump <= 4) {
             printMenu();
             int opcion = scanner.nextInt();
             switch (opcion) {
@@ -30,20 +31,17 @@ public class Simulation {
                     break;
                 case 2:
                     try {
-                        printStacks(cola1erMovimiento, cola2ndoMovimiento, cola3erMovimiento, cola4toMovimiento);
+                        printStackNodes(stack1stMove, stack2ndMove, stack3rthMove, stack4thMove);
                     } catch (IsEmptyException e) {
-                        System.out.println("The Stack is empty");
+                        System.out.println("The StackNode is empty");
                     }
                     break;
                 case 3:
+                    printPossibleRoutes(knight);
                     System.exit(0);
             }
         }
-        try {
-            printStacks(cola1erMovimiento, cola2ndoMovimiento, cola3erMovimiento, cola4toMovimiento);
-        } catch (IsEmptyException e) {
-            System.out.println("The Stack is empty");
-        }
+        printPossibleRoutes(knight);
     }
 
 
@@ -54,10 +52,10 @@ public class Simulation {
         System.out.println("3. Salir");
     }
 
-    private void realizarSalto(int salto, Knight knight, Board board) throws IsEmptyException {
-        if (salto == 1) {
-            cola1erMovimiento = knight.possibleSlotsStack();
-            Slot nuevoSlot = cola1erMovimiento.peek();
+    private void makeJump(int jump, Knight knight) throws IsEmptyException {
+        if (jump == 1) {
+            stack1stMove = knight.possibleSlotsStack();
+            Slot nuevoSlot = stack1stMove.peek();
             knight.moveKnight(nuevoSlot);
         }
         if (salto == 2) {
@@ -76,59 +74,59 @@ public class Simulation {
             knight.moveKnight(nuevoSlot);
         }
     }
-/*
-    private void printStacks(StackNode<Slot> stack1, StackNode<Slot> stack2, StackNode<Slot> stack3, StackNode<Slot> stack4) throws IsEmptyException {
 
-        String possibleMoves= "";
-        while (stack1.size()!=0) {
-            possibleMoves= possibleMoves + stack1.peek().print();
-            stack1.pop();
+    private void printPossibleRoutes(Knight knight) throws IsEmptyException {
+        //This method prints all the possible routes a knight could make in 4 moves
+        while (!stack4thMove.isEmpty()) {
+            System.out.println(startingSlot.print() + "- " + stack1stMove.peek().print() + "- " + stack2ndMove.peek().print() + "- " + stack3rthMove.peek().print() + "- " + stack4thMove.peek().print());
+            stack4thMove.pop();
         }
-        System.out.println(possibleMoves);
-
-        possibleMoves= "";
-
-        while (stack2.size()!=0) {
-            possibleMoves= possibleMoves + stack2.peek().print();
-            stack2.pop();
+        System.out.println("");
+        if (!stack3rthMove.isEmpty()) stack3rthMove.pop();
+            if (!stack3rthMove.isEmpty()) {
+                knight.moveKnight(stack3rthMove.peek());
+                stack4thMove = knight.possibleSlotsStack();
+                while (!stack3rthMove.isEmpty()) {
+                    printPossibleRoutes(knight);
+                }
+            }
+        if(!stack2ndMove.isEmpty()) stack2ndMove.pop();
+        if (!stack2ndMove.isEmpty()) {
+            knight.moveKnight(stack2ndMove.peek());
+            stack3rthMove = knight.possibleSlotsStack();
+            while (!stack2ndMove.isEmpty()) {
+                printPossibleRoutes(knight);
+            }
         }
-        System.out.println(possibleMoves);
-
-        possibleMoves= "";
-        while (stack3.size()!=0) {
-            possibleMoves= possibleMoves + stack3.peek().print();
-            stack3.pop();
+        if(!stack1stMove.isEmpty()) stack1stMove.pop();
+            if (!stack1stMove.isEmpty()){
+                knight.moveKnight(stack1stMove.peek());
+                stack2ndMove = knight.possibleSlotsStack();
+                while (!stack1stMove.isEmpty()) {
+                    printPossibleRoutes(knight);
+            }
         }
-        System.out.println(possibleMoves);
-
-        possibleMoves= "";
-
-        while (stack4.size()!=0) {
-            possibleMoves= possibleMoves + stack4.peek().print();
-            stack4.pop();
-        }
-        System.out.println(possibleMoves);
     }
 
- */
-    private void printStacks(StackNode<Slot> stack1,StackNode<Slot> stack2,StackNode<Slot> stack3,StackNode<Slot> stack4) throws IsEmptyException {
-        printStacks(stack1);
+    private void printStackNodes(StackNode<Slot> stack1,StackNode<Slot> stack2,StackNode<Slot> stack3,StackNode<Slot> stack4) throws IsEmptyException {
+        printStackNodes(stack1);
         System.out.println();
-        printStacks(stack2);
+        printStackNodes(stack2);
         System.out.println();
-        printStacks(stack3);
+        printStackNodes(stack3);
         System.out.println();
-        printStacks(stack4);
+        printStackNodes(stack4);
         System.out.println();
 }
-    private void printStacks(StackNode<Slot> stack) throws IsEmptyException {
+
+    private void printStackNodes(StackNode<Slot> stack) throws IsEmptyException {
         if(stack.isEmpty()){
             return;
         }
         Slot slot = stack.peek();
         System.out.print(slot.print());
         stack.pop();
-        printStacks(stack);
+        printStackNodes(stack);
         stack.stack(slot);
 
     }

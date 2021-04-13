@@ -64,5 +64,10 @@ public class Board {
                 throw new IllegalArgumentException("This letter is not a coordinate of the board");
         }
     }
-
+    public Slot stringToSlot(String slotString){
+        slotString.toUpperCase();
+        Integer number= Character.getNumericValue(slotString.charAt(1));
+        Slot slot= new Slot(slotString.charAt(0), number);
+        return slot;
+    }
 }

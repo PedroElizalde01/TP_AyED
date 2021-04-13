@@ -16,8 +16,8 @@ public class Knight extends Piece {
         this.board = board;
     }
 
-    public StackNode possibleSlotsStack() {
-        StackNode slotsStack = new StackNode();
+    public StackNode<Slot> possibleSlotsStack() {
+        StackNode<Slot> slotsStack = new StackNode<>();
         for (int i = 0; i < board.board.length; i++) {
             for (int j = 0; j < board.board[i].length; j++) {
                 if(possibleSlot(i,j)){
@@ -29,8 +29,8 @@ public class Knight extends Piece {
     }
 
     private boolean possibleSlot(int row, int column){
-        int newRow= Math.abs(row+1-slot.charToNum(slot.getLetter()));
-        int newColumn=Math.abs(column+1-slot.getNumber());
+        int newRow= Math.abs(row+1-slot.getNumber());
+        int newColumn=Math.abs(column+1-slot.charToNum(slot.getLetter()));
         if((newRow==2 && newColumn == 1) || (newRow == 1 && newColumn ==2)) {
             return true;
             }

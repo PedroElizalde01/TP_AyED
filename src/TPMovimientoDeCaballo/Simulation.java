@@ -126,9 +126,9 @@ public class Simulation {
             return;
         }
         Slot slot = stack.peek();
+        System.out.print(slot.print());
         stack.pop();
         printStacks(stack);
-        System.out.print(slot.print());
         stack.stack(slot);
 
     }

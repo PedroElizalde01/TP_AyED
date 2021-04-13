@@ -17,7 +17,7 @@ public class Simulation {
     private StackNode<Slot> cola4toMovimiento = new StackNode();
 
 
-    public void startSimulation(Board board, Knight knight) {
+    public void startSimulation(Board board, Knight knight) throws IsEmptyException {
         int salto = 1;
         Scanner scanner = new Scanner(System.in);
         while (salto <= 4) {
@@ -54,7 +54,7 @@ public class Simulation {
         System.out.println("3. Salir");
     }
 
-    private void realizarSalto(int salto, Knight knight, Board board) {
+    private void realizarSalto(int salto, Knight knight, Board board) throws IsEmptyException {
         if (salto == 1) {
             cola1erMovimiento = knight.possibleSlotsStack();
             Slot nuevoSlot = cola1erMovimiento.peek();
@@ -76,7 +76,7 @@ public class Simulation {
             knight.moveKnight(nuevoSlot);
         }
     }
-
+/*
     private void printStacks(StackNode<Slot> stack1, StackNode<Slot> stack2, StackNode<Slot> stack3, StackNode<Slot> stack4) throws IsEmptyException {
 
         String possibleMoves= "";
@@ -108,6 +108,29 @@ public class Simulation {
             stack4.pop();
         }
         System.out.println(possibleMoves);
+    }
+
+ */
+    private void printStacks(StackNode<Slot> stack1,StackNode<Slot> stack2,StackNode<Slot> stack3,StackNode<Slot> stack4) throws IsEmptyException {
+        printStacks(stack1);
+        System.out.println();
+        printStacks(stack2);
+        System.out.println();
+        printStacks(stack3);
+        System.out.println();
+        printStacks(stack4);
+        System.out.println();
+}
+    private void printStacks(StackNode<Slot> stack) throws IsEmptyException {
+        if(stack.isEmpty()){
+            return;
+        }
+        Slot slot = stack.peek();
+        stack.pop();
+        printStacks(stack);
+        System.out.print(slot.print());
+        stack.stack(slot);
+
     }
 }
 

@@ -11,7 +11,8 @@ public class Tester {
         BinaryTree<Integer> D = new BinaryTree<Integer>(4,G,B);
         BinaryTree<Integer> E = new BinaryTree<Integer>(5,D,C);
 
-        System.out.println(api.lleno(E));
+        System.out.println(api.lleno(E)+ " ,Expected: true");
+
 
 
     }

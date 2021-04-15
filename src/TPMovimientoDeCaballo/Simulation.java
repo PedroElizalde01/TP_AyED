@@ -18,16 +18,17 @@ public class Simulation {
     private Slot startingSlot;
 
 
-    public void startSimulation(Board board, Knight knight) throws IsEmptyException {
-        int salto = 1;
+    public void startSimulation(Knight knight) throws IsEmptyException {
+        startingSlot = knight.getSlot();
+        int jump = 1;
         Scanner scanner = new Scanner(System.in);
         while (jump <= 4) {
             printMenu();
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    realizarSalto(salto, knight, board);
-                    salto++;
+                    makeJump(jump, knight);
+                    jump++;
                     break;
                 case 2:
                     try {
@@ -46,10 +47,10 @@ public class Simulation {
 
 
     private void printMenu() {
-        System.out.println("Elegir una opcion: \n");
-        System.out.println("1. El caballo realiza un salto");
-        System.out.println("2. Mostrar contenido en las pilas");
-        System.out.println("3. Salir");
+        System.out.println("Choose an option: \n");
+        System.out.println("1. The knight make a jump");
+        System.out.println("2. Show stack's content");
+        System.out.println("3. Exit");
     }
 
     private void makeJump(int jump, Knight knight) throws IsEmptyException {
@@ -58,19 +59,19 @@ public class Simulation {
             Slot nuevoSlot = stack1stMove.peek();
             knight.moveKnight(nuevoSlot);
         }
-        if (salto == 2) {
-            cola2ndoMovimiento = knight.possibleSlotsStack();
-            Slot nuevoSlot = cola2ndoMovimiento.peek();
+        if (jump == 2) {
+            stack2ndMove = knight.possibleSlotsStack();
+            Slot nuevoSlot = stack2ndMove.peek();
             knight.moveKnight(nuevoSlot);
         }
-        if (salto == 3) {
-            cola3erMovimiento = knight.possibleSlotsStack();
-            Slot nuevoSlot = cola3erMovimiento.peek();
+        if (jump == 3) {
+            stack3rthMove = knight.possibleSlotsStack();
+            Slot nuevoSlot = stack3rthMove.peek();
             knight.moveKnight(nuevoSlot);
         }
-        if (salto == 4) {
-            cola4toMovimiento = knight.possibleSlotsStack();
-            Slot nuevoSlot = cola4toMovimiento.peek();
+        if (jump == 4) {
+            stack4thMove = knight.possibleSlotsStack();
+            Slot nuevoSlot = stack4thMove.peek();
             knight.moveKnight(nuevoSlot);
         }
     }

@@ -53,7 +53,6 @@ public class BinaryTreeAPI <T> {
         return getCountOfElementsInALevel(a.getLeft(), level - 1) + getCountOfElementsInALevel(a.getRight(), level - 1);
     }
 
-
     public int height(BinaryTree<T> a) {
         if (!a.isEmpty()) {
             int heigthLeft = height(a.getLeft());
@@ -62,6 +61,24 @@ public class BinaryTreeAPI <T> {
         } else {
             return -1;
         }
+    }
+    public Integer sumOfAllNodes(BinaryTree<Integer> a){
+        int count=0;
+        count = auxSumOfAllNodes(a, count);
+        return count;
+    }
+
+    private Integer auxSumOfAllNodes(BinaryTree<Integer> a, int count) {
+        if(!a.isEmpty()){
+            count+= a.getRoot();
+            auxSumOfAllNodes(a.getLeft(), count);
+            auxSumOfAllNodes(a.getRight(), count);
+        }
+        return count;
+    }
+    public int sumOfAllNodesDiviededByThree(BinaryTree<Integer> a) {
+        int count=0;
+        return count;
     }
 
     boolean iguales(BinaryTree<T> a1, BinaryTree<T> a2) {
@@ -193,7 +210,8 @@ public class BinaryTreeAPI <T> {
         return downlevel;
     }
 
-    public boolean ocurreArbin(BinaryTree<T> a1, BinaryTree<T> a2) { /* Indica si el árbol a2 ocurre en el árbol a1 */
+    public boolean ocurreArbin(BinaryTree<T> a1, BinaryTree<T> a2) {
+        /* Indica si el árbol a2 ocurre en el árbol a1 */
         if (a1.isEmpty()) {
             return false;
         }
@@ -205,6 +223,7 @@ public class BinaryTreeAPI <T> {
     }
 
     public boolean estable (BinaryTree<Comparable <T>> a) throws IllegalClassFormatException {
+        //Revisar porque sirve para objeto comparable
         if(a.getRoot().getClass() != Integer.class) throw new IllegalClassFormatException("La clase del Arbol es incompatible");
         if(a.isEmpty()) return true;
         if(a.getLeft().isEmpty() && a.getRight().isEmpty()) return true;

@@ -18,8 +18,7 @@ public class Simulation {
     private Slot startingSlot;
 
 
-    public void startSimulation(Knight knight) throws IsEmptyException {
-        startingSlot = knight.getSlot();
+    public void startSimulation(Board board, Knight knight) throws IsEmptyException {
         int jump = 1;
         Scanner scanner = new Scanner(System.in);
         while (jump <= 4) {
@@ -47,10 +46,10 @@ public class Simulation {
 
 
     private void printMenu() {
-        System.out.println("Choose an option: \n");
-        System.out.println("1. The knight make a jump");
-        System.out.println("2. Show stack's content");
-        System.out.println("3. Exit");
+        System.out.println("Elegir una opcion: \n");
+        System.out.println("1. El caballo realiza un salto");
+        System.out.println("2. Mostrar contenido en las pilas");
+        System.out.println("3. Salir");
     }
 
     private void makeJump(int jump, Knight knight) throws IsEmptyException {

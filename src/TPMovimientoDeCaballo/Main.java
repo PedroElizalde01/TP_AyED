@@ -17,6 +17,6 @@ public class Main {
         Slot initialSlot= board.stringToSlot(scanner.nextLine());
         Knight knight= new Knight(initialSlot,board);
         Simulation simulation = new Simulation();
-        simulation.startSimulation(knight);
+        simulation.startSimulation(board,knight);
     }
 }

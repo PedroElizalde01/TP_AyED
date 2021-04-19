@@ -71,13 +71,25 @@ public class BinaryTreeAPI <T> {
     private Integer auxSumOfAllNodes(BinaryTree<Integer> a, int count) {
         if(!a.isEmpty()){
             count+= a.getRoot();
-            auxSumOfAllNodes(a.getLeft(), count);
-            auxSumOfAllNodes(a.getRight(), count);
+            count = auxSumOfAllNodes(a.getLeft(), count);
+            count = auxSumOfAllNodes(a.getRight(), count);
         }
         return count;
     }
     public int sumOfAllNodesDiviededByThree(BinaryTree<Integer> a) {
         int count=0;
+        count = auxSumOfAllNodesDividedByThree(a, count);
+        return count;
+    }
+
+    private Integer auxSumOfAllNodesDividedByThree(BinaryTree<Integer> a, int count) {
+        if(!a.isEmpty()){
+            if(a.getRoot() %3 ==0) {
+                count+=a.getRoot();
+            }
+            count = auxSumOfAllNodesDividedByThree(a.getLeft(), count);
+            count = auxSumOfAllNodesDividedByThree(a.getRight(), count);
+        }
         return count;
     }
 
@@ -222,16 +234,15 @@ public class BinaryTreeAPI <T> {
         return ocurreArbin(a1.getLeft(), a2) || ocurreArbin(a1.getRight(), a2);
     }
 
-    public boolean estable (BinaryTree<Comparable <T>> a) throws IllegalClassFormatException {
-        //Revisar porque sirve para objeto comparable
-        if(a.getRoot().getClass() != Integer.class) throw new IllegalClassFormatException("La clase del Arbol es incompatible");
+    public boolean estable (BinaryTree<Comparable <T>> a){
         if(a.isEmpty()) return true;
         if(a.getLeft().isEmpty() && a.getRight().isEmpty()) return true;
         for (int i = 0; i < peso((BinaryTree<T>) a); i++) {
             if(a.getRoot().compareTo((T) a.getLeft().getRoot()) > 0){
                 return estable(a.getLeft());
-            }
-            if(a.getRoot().compareTo((T) a.getRight().getRoot()) > 0){
+            }else if(a.getRoot().compareTo((T) a.getLeft().getRoot()) <= 0){
+                return false;
+            }else if(a.getRoot().compareTo((T) a.getRight().getRoot()) > 0){
                 return estable(a.getRight());
             }
         }

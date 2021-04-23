@@ -32,6 +32,14 @@ public class Simulation {
                     break;
                 case 2: fillStack();
                     mostrarPila(pila);
+                    System.out.println("Recaudado de cada Ventanilla");
+                    for (int i = 0; i < metrovias.getPaymentCounters().length; i++) {
+                        System.out.println(metrovias.getPaymentCounters()[i].getCollectedMoney());
+                    }
+                    System.out.println("Tiempo de espera de cada ticket");
+                    for (int i = 0; i < metrovias.getPaymentCounters().length; i++) {
+                        System.out.println(metrovias.getPaymentCounters()[i].getAverageTime());
+                    }
                     System.exit(0);
                     break;
             }
@@ -54,17 +62,21 @@ public class Simulation {
     private void mostrarPila(Stack<Ticket> pila){}
 
     private void advance30Seconds() throws IsEmptyException {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {   //Primero llegan los 5 clientes y cada uno elije una ventanilla
             clientArrives();
         }
-        for(PaymentCounter paymentCounter : metrovias.getPaymentCounters()){ //Las personas q llegan se ubican en
-            QueueNode<People> peopleQueue= paymentCounter.getPeopleQueue(); //cualquier ventanilla, a nosotros nos
-            paymentCounter.attendClient();          //salta un error porque el 2° for de este metodo busca personas en
-            People people = peopleQueue.dequeue();  //orden del array (de cero hasta array.length), pero como hay
-            people.advanceThirtySeconds();       //ventanillas q no tienen personas nos dice q el stack esta vacio
-        }  //tenemos q buscar solo en las ventanillas que tienen una cola con almenos una persona (creo) -Pedro
+        for(PaymentCounter paymentCounter : metrovias.getPaymentCounters()){
+            QueueNode<People> peopleQueue= paymentCounter.getPeopleQueue(); //Primero pasan 30 sec por persona para q desp lo atienda
+            for (int i = 0; i < peopleQueue.size(); i++) {
+                People people = peopleQueue.dequeue(); //Saco a la persona para
+                people.advanceThirtySeconds();         //Sumarle 30 sec y desp
+                peopleQueue.enqueue(people);           //La vuelvo a meter al Queue
+            }       //Como es un for del tamaño del queue, va a dar la vuelta entera y no cambia la posicion de las personas
+            paymentCounter.attendClient(); //El cliente tiene un 0.5 de probabilidad de q sea atendido
+        }
     }
     private void clientArrives(){
         new People(metrovias);
     }
+
 }

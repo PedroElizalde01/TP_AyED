@@ -49,6 +49,7 @@ public class PaymentCounter {
     public QueueNode<People> getPeopleQueue() {
         return peopleQueue;
     }
+
     public double getCollectedMoney() throws IsEmptyException {
         int counter=0;
         for (int i = 0; i < ticketStack.size(); i++) {
@@ -66,10 +67,11 @@ public class PaymentCounter {
             return;
         }
         for (int i = 0; i < ticketStack.size(); i++) {
-            Ticket ticket = ticketStack.peek();
-            counter += ticket.getPrice();
+            Ticket currentTicket = ticketStack.peek();
+            counter += currentTicket.getPrice();
             ticketStack.pop();
             getCollectedMoney(counter);
+            ticketStack.stack(currentTicket);
         }
     }
 
@@ -77,8 +79,24 @@ public class PaymentCounter {
         int counter=0;
         int size= ticketStack.size();
         for (int i = 0; i < ticketStack.size(); i++) {
-            counter +=ticketStack.peek().getTimeInLine();
+            Ticket currentTicket= ticketStack.peek();
+            counter += currentTicket.getTimeInLine();
+            ticketStack.pop();
+            getAverageTime(counter);
+            ticketStack.stack(currentTicket);
         }
         return counter/size;
+    }
+    private void getAverageTime(int counter) throws IsEmptyException{
+        if(ticketStack.isEmpty()){
+            return;
+        }
+        for (int i = 0; i < ticketStack.size(); i++) {
+            Ticket currentTicket = ticketStack.peek();
+            counter += currentTicket.getTimeInLine();
+            ticketStack.pop();
+            getAverageTime(counter);
+            ticketStack.stack(currentTicket);
+        }
     }
 }

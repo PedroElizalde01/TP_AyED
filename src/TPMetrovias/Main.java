@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         Simulation simulation = new Simulation();
+        System.out.println("Cantidad de Ventanillas");
         Scanner input = new Scanner(System.in);
         int numOfCounters = input.nextInt();
         Metrovias metrovias= new Metrovias(numOfCounters);

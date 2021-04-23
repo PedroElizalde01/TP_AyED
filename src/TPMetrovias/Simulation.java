@@ -54,14 +54,17 @@ public class Simulation {
     private void mostrarPila(Stack<Ticket> pila){}
 
     private void advance30Seconds() throws IsEmptyException {
-        for (int i = 0; i <= 5; i++) {
-            People people = new People(metrovias);
+        for (int i = 0; i < 5; i++) {
+            clientArrives();
         }
-        for(PaymentCounter paymentCounter : metrovias.getPaymentCounters()){
-            QueueNode<People> peopleQueue= paymentCounter.getPeopleQueue();
-            paymentCounter.attendClient();
-            People people = peopleQueue.dequeue();
-            people.advanceThirtySeconds();
-        }
+        for(PaymentCounter paymentCounter : metrovias.getPaymentCounters()){ //Las personas q llegan se ubican en
+            QueueNode<People> peopleQueue= paymentCounter.getPeopleQueue(); //cualquier ventanilla, a nosotros nos
+            paymentCounter.attendClient();          //salta un error porque el 2° for de este metodo busca personas en
+            People people = peopleQueue.dequeue();  //orden del array (de cero hasta array.length), pero como hay
+            people.advanceThirtySeconds();       //ventanillas q no tienen personas nos dice q el stack esta vacio
+        }  //tenemos q buscar solo en las ventanillas que tienen una cola con almenos una persona (creo) -Pedro
+    }
+    private void clientArrives(){
+        new People(metrovias);
     }
 }

@@ -10,13 +10,14 @@ public class Metrovias {
 
     public Metrovias(int numOfCounters) {
         this.paymentCounters = new PaymentCounter[numOfCounters];
-        fill();
+        fillPaymentCounter();
     }
 
     public PaymentCounter[] getPaymentCounters() {
         return paymentCounters;
     }
-    private void fill(){
+
+    private void fillPaymentCounter(){
         for (int i = 0; i < paymentCounters.length; i++) {
             PaymentCounter paymentCounter= new PaymentCounter();
             paymentCounters[i]= paymentCounter;

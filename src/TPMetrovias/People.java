@@ -23,7 +23,7 @@ public class People {
     }
 
     public PaymentCounter choosePaymentCounter(Metrovias metrovias){
-        int n = (int) ((Math.random() * (metrovias.getPaymentCounters().length))+1);
+        int n = new Random().getNumBetweenValues(metrovias.getPaymentCounters().length-1,0);
         metrovias.getPaymentCounters()[n].addPeopleToQueue(this);
         return metrovias.getPaymentCounters()[n];
 

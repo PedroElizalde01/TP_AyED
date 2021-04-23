@@ -18,8 +18,8 @@ public class PaymentCounter {
         this.peopleQueue= new QueueNode<>();
 
     }
-    public void addPeopleToQueue(People aperson){
-        peopleQueue.enqueue(aperson);
+    public void addPeopleToQueue(People aPerson){
+        peopleQueue.enqueue(aPerson);
     }
 
     public void attendClient() throws IsEmptyException {
@@ -35,9 +35,11 @@ public class PaymentCounter {
     public void generateTicket(int time) throws IsEmptyException {
         if(ticketStack.isEmpty()){
             Ticket ticket= new Ticket(time, 10000);
+            ticketStack.stack(ticket);
+        }else{
+            Ticket ticket= new Ticket(time, ticketStack.peek().getTicketID()+1);
+            ticketStack.stack(ticket);
         }
-        Ticket ticket= new Ticket(time, ticketStack.peek().getTicketID()+1);
-        ticketStack.stack(ticket);
     }
 
     public StackNode<Ticket> getTicketStack() {

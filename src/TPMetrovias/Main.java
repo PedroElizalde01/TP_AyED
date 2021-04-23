@@ -17,7 +17,7 @@ public class Main {
         int numOfCounters = input.nextInt();
         Metrovias metrovias= new Metrovias(numOfCounters);
         try {
-            simulation.startSimulation(numOfCounters, metrovias);
+            simulation.startSimulation(metrovias);
         } catch (IsEmptyException e) {
             e.printStackTrace();
         }

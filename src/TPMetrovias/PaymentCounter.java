@@ -51,52 +51,53 @@ public class PaymentCounter {
     }
 
     public double getCollectedMoney() throws IsEmptyException {
-        int counter=0;
-        for (int i = 0; i < ticketStack.size(); i++) {
-            Ticket ticket =ticketStack.peek();
-            counter += ticket.getPrice();
+        double counter = 0;
+        if(ticketStack.isEmpty()){
+            return 0;
+        }
+        Ticket ticket =ticketStack.peek();
+        counter += ticket.getPrice();
+        ticketStack.pop();
+        counter = getCollectedMoney(counter);
+        ticketStack.stack(ticket);
+        return counter;
+    }
+
+    private double getCollectedMoney(double counter) throws IsEmptyException {
+        if(ticketStack.isEmpty()){
+            return counter;
+        }else{
+            Ticket currentTicket = ticketStack.peek();
+            double ticketPrice = currentTicket.getPrice();
+            counter += ticketPrice;
             ticketStack.pop();
-            getCollectedMoney(counter);
-            ticketStack.stack(ticket);
+            counter = getCollectedMoney(counter);
+            ticketStack.stack(currentTicket);
         }
         return counter;
     }
 
-    private void getCollectedMoney(int counter) throws IsEmptyException {
-        if (ticketStack.isEmpty()){
-            return;
-        }
-        for (int i = 0; i < ticketStack.size(); i++) {
-            Ticket currentTicket = ticketStack.peek();
-            counter += currentTicket.getPrice();
-            ticketStack.pop();
-            getCollectedMoney(counter);
-            ticketStack.stack(currentTicket);
-        }
-    }
-
     public double getAverageTime() throws IsEmptyException {
-        int counter=0;
-        int size= ticketStack.size();
-        for (int i = 0; i < ticketStack.size(); i++) {
-            Ticket currentTicket= ticketStack.peek();
-            counter += currentTicket.getTimeInLine();
-            ticketStack.pop();
-            getAverageTime(counter);
-            ticketStack.stack(currentTicket);
-        }
+        double counter = 0;
+        int size = ticketStack.size();
+        Ticket currentTicket= ticketStack.peek();
+        counter += currentTicket.getTimeInLine();
+        ticketStack.pop();
+        counter = getAverageTime(counter);
+        ticketStack.stack(currentTicket);
         return counter/size;
     }
-    private void getAverageTime(int counter) throws IsEmptyException{
+    private double getAverageTime(double counter) throws IsEmptyException{
         if(ticketStack.isEmpty()){
-            return;
-        }
-        for (int i = 0; i < ticketStack.size(); i++) {
+            return counter;
+        }else{
             Ticket currentTicket = ticketStack.peek();
-            counter += currentTicket.getTimeInLine();
+            double timeInLine = currentTicket.getTimeInLine();
+            counter += timeInLine;
             ticketStack.pop();
-            getAverageTime(counter);
+            counter = getAverageTime(counter);
             ticketStack.stack(currentTicket);
         }
+        return counter;
     }
 }

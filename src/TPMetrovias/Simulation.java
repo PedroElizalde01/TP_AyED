@@ -15,28 +15,28 @@ import java.util.Scanner;
 public class Simulation {
     private Metrovias metrovias;
     private Stack<Ticket> pila;
-    public void startSimulation(int numOfCounters, Metrovias metrovias) throws IsEmptyException{
+    public void startSimulation( Metrovias metrovias) throws IsEmptyException{
         this.metrovias=metrovias;
         this.pila = new Stack<>();
-        int option=0;
+        int option;
         do{
             printMenu();
             Scanner input = new Scanner(System.in);
             option = input.nextInt();
             if (option != 1 && option != 2){
                 System.out.println("\nEnter a valid number\n");
-                startSimulation(numOfCounters, metrovias);
+                startSimulation(metrovias);
             }
             switch (option){
                 case 1: advance30Seconds();
                     break;
-                case 2: fillStack();
-                    mostrarPila(pila);
+                case 2: //fillStack();
+                    //mostrarPila(pila);
                     System.out.println("Recaudado de cada Ventanilla");
                     for (int i = 0; i < metrovias.getPaymentCounters().length; i++) {
                         System.out.println(metrovias.getPaymentCounters()[i].getCollectedMoney());
                     }
-                    System.out.println("Tiempo de espera de cada ticket");
+                    System.out.println("Tiempo de espera promedio de cada Ventanilla");
                     for (int i = 0; i < metrovias.getPaymentCounters().length; i++) {
                         System.out.println(metrovias.getPaymentCounters()[i].getAverageTime());
                     }

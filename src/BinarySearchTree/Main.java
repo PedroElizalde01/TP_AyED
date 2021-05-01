@@ -20,7 +20,7 @@ public class Main {
             else
                 System.out.println("no existe");
             ArBinApi<Estudiante> api= new ArBinApi<Estudiante>();
-            api.inorden(a);
+            api.inordenEstudiante(a);
         }
     }
 

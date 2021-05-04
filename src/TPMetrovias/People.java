@@ -7,11 +7,10 @@ package TPMetrovias;
 
 public class People {
     private int timeCounter;
-    private PaymentCounter paymentCounter;
 
     public People(Metrovias metrovias){
         this.timeCounter = 0;
-        this.paymentCounter = choosePaymentCounter(metrovias);
+        choosePaymentCounter(metrovias);
     }
 
     public int getTimeCounter() {
@@ -22,11 +21,8 @@ public class People {
         this.timeCounter+=30;
     }
 
-    public PaymentCounter choosePaymentCounter(Metrovias metrovias){
+    public void choosePaymentCounter(Metrovias metrovias){
         int n = (int) ((Math.random() * (metrovias.getPaymentCounters().length)));
         metrovias.getPaymentCounters()[n].addPeopleToQueue(this);
-        return metrovias.getPaymentCounters()[n];
-
-
     }
 }

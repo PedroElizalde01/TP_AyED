@@ -80,6 +80,9 @@ public class PaymentCounter {
     public double getAverageTime() throws IsEmptyException {
         double counter = 0;
         int size = ticketStack.size();
+        if(ticketStack.isEmpty()){
+           return 0;
+        }
         Ticket currentTicket= ticketStack.peek();
         counter += currentTicket.getTimeInLine();
         ticketStack.pop();

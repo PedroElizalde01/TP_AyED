@@ -5,6 +5,8 @@ public class Main {
         AVL<Integer> avlTree = new AVL<>();
         avlTree.insert(10);
         avlTree.insert(8);
-        avlTree.insert(5);
+        avlTree.insert(9);
+        avlTree.insert(40);
+        avlTree.insert(50);
     }
 }

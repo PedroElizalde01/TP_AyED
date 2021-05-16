@@ -13,7 +13,7 @@ public class Queue <T> implements QueueInterface<T> {
         T[] bigStackArray = (T[])new Object[stackArray.length + 1];
         for (int i = 0; i < stackArray.length; i++) bigStackArray[i+1] = stackArray[i];
         this.size = bigStackArray.length;
-        this.stackArray =(T[]) bigStackArray;
+        this.stackArray = bigStackArray;
         stackArray[0] = (T)element;
     }
     @Override

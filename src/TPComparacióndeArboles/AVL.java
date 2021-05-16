@@ -198,9 +198,9 @@ public class AVL<T> {
         if (t!=null) {
             int heigthLeft = height(t.izq);
             int heightRight = height(t.der);
-            return Math.max(heigthLeft, heightRight);
+            return 1 + Math.max(heigthLeft, heightRight);
         } else {
-            return 0;
+            return -1;
         }
     }
     private StackNode<NodoDoble<T>> nodeJourney(NodoDoble<T> t, Comparable<T> x, StackNode<NodoDoble<T>> stack){

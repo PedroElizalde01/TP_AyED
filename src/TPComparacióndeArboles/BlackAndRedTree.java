@@ -270,7 +270,7 @@ import PilasyColas.StackNode;
         }
     private NodoBnR<T> isSonRed(NodoBnR<T> node) {
         if (node != null) {
-            if ((node.izq.isRed && node.isRed) || (node.der.isRed && node.isRed)) {
+            if ((node.izq!=null && node.izq.isRed && node.isRed) || (node.der != null && node.der.isRed && node.isRed)) {
                 return node;
             } else {
                 if(isSonRed(node.izq)==null){

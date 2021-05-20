@@ -1,5 +1,6 @@
 package TPComparacióndeArboles;
 
+import PilasyColas.IsEmptyException;
 import PilasyColas.StackNode;
 
 /**************************************
@@ -7,7 +8,7 @@ import PilasyColas.StackNode;
      Date: 20/04/2021
  **************************************/
 
-    public class BlackAndRedTree<T> {
+    public class BlackAndRedTree<T extends Comparable<T>> {
         private NodoBnR<T> root;
 
         public BlackAndRedTree(){
@@ -15,11 +16,15 @@ import PilasyColas.StackNode;
         }
 
         // precondicion: elemento a insertar no pertenece al árbol
-        public void insert(Comparable <T> x) throws DuplicatedObjectException {
+        public void insert(Comparable <T> x) throws DuplicatedObjectException, IsEmptyException {
             if(exists(x)){
                 throw new DuplicatedObjectException();
             }
+
             root = insert(root, x);
+            if (root.isRed){
+                root.isRed=false;
+            }
         }
 
         // precondicion: elemento a eliminar pertenece al árbol
@@ -128,20 +133,101 @@ import PilasyColas.StackNode;
                 return exists(t.der, x);
         }
 
-        private NodoBnR<T> insert(NodoBnR<T> t, Comparable <T> x) {
-            if (t == null){
+        private NodoBnR<T> insert(NodoBnR<T> t, Comparable <T> x) throws IsEmptyException {
+            StackNode<NodoBnR<T>> stack = new StackNode<>();
+            if (t == null) {
                 t = new NodoBnR<T>();
                 t.elem = (T) x;
-            }
-            else if (x.compareTo(t.elem) < 0)
+            } else if (x.compareTo(t.elem) < 0) {
                 t.izq = insert(t.izq, x);
-            else
+
+            }else{
                 t.der = insert(t.der, x);
+            }
+            stack = nodeJourney(t, x, stack);
+            if(stack.size()>=3) {
+                while(!isEstable(t)) {
+                    NodoBnR<T> nodeSon = stack.peek();
+                    stack.pop();
+                    NodoBnR<T> nodeFather = stack.peek();
+                    stack.pop();
+                    NodoBnR<T> grandfatherNode = stack.peek();
+                    if (grandfatherNode.izq != null && grandfatherNode.der != null) {
+                        //Caso 2
+                        if (grandfatherNode.izq.equals(nodeFather)) {
+                            if (grandfatherNode.der.isRed) {
+                                t = changeColors2ndCaseRedBrother(grandfatherNode);
+                            } else {
+                                if (nodeSon.elem.compareTo(nodeFather.elem) > 0) {
+                                    t= doubleWithLeftChild(grandfatherNode);
+                                    t.der.isRed = true;
+                                    t.izq.isRed = true;
+                                    t.isRed = false;
+                                } else {
+                                    t = rotateWithLeftChild(grandfatherNode);
+                                    t.der.isRed = true;
+                                    t.izq.isRed = true;
+                                    t.isRed = false;
+                                }
+                            }
+                        } else {
+                            if (grandfatherNode.izq.isRed) {
+                                t = changeColors2ndCaseRedBrother(t);
+                            } else {
+                                if (nodeSon.elem.compareTo(nodeFather.elem) > 0) {
+                                    t= rotateWithRightChild(grandfatherNode);
+                                    t.der.isRed = true;
+                                    t.izq.isRed = true;
+                                    t.isRed = false;
+                                } else {
+                                    t= doubleWithRightChild(grandfatherNode);
+                                    t.der.isRed = true;
+                                    t.izq.isRed = true;
+                                    t.isRed = false;
+                                }
+                            }
+                        }
+                    } else {
+                        if (grandfatherNode.izq!=null && grandfatherNode.izq.equals(nodeFather)) {
+                            if (nodeFather.izq != null) {
+                                t = rotateWithLeftChild(grandfatherNode);
+                                t.isRed = false;
+                                t.izq.isRed = true;
+                                t.der.isRed = true;
+                            } else {
+                                t = doubleWithLeftChild(grandfatherNode);
+                                t.der.isRed = true;
+                                t.izq.isRed = true;
+                                t.isRed = false;
+                            }
+                        } else {
+                            if (nodeFather.der != null) {
+                                t = rotateWithRightChild(grandfatherNode);
+                                t.der.isRed = true;
+                                t.izq.isRed = true;
+                                t.isRed = false;
+                            } else {
+                                t = doubleWithRightChild(grandfatherNode);
+                                t.der.isRed = true;
+                                t.izq.isRed = true;
+                                t.isRed = false;
+                            }
+                        }
+                    }
+                }
+            }
             return t;
         }
 
+    private NodoBnR<T> changeColors2ndCaseRedBrother(NodoBnR<T> granfather) {
+            granfather.isRed = true;
+            granfather.izq.isRed = false;
+            granfather.der.isRed = false;
+            return granfather;
+    }
 
-        private NodoBnR<T> delete(NodoBnR<T> t, Comparable<T> x) {
+
+    private NodoBnR<T> delete(NodoBnR<T> t, Comparable<T> x) {
             if (x.compareTo(t.elem) < 0)
                 t.izq = delete(t.izq, x);
             else if (x.compareTo(t.elem) > 0)
@@ -165,8 +251,8 @@ import PilasyColas.StackNode;
                 t = t.der;
             return t;
         }
-        private boolean isEstable(StackNode<NodoBnR<T>> stackNode){
-            if (isSonRed(root) != null || mismaCantidadDeNodosNegros(root,0,0) == -1){
+        private boolean isEstable(NodoBnR<T> t){
+            if (isSonRed(t) != null || mismaCantidadDeNodosNegros(t,0,0) == -1){
                 return false;
             }
             return true;
@@ -226,7 +312,7 @@ import PilasyColas.StackNode;
 
     private StackNode<NodoBnR<T>> nodeJourney(NodoBnR<T> t, Comparable<T> x, StackNode<NodoBnR<T>> stack){
         // Devuelve el camino que hace para insertar el nodo nuevo y lo inserta
-        if (t == null){
+        if (t == null) {
             t = new NodoBnR<T>();
             t.elem = (T) x;
         }

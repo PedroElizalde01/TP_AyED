@@ -1,14 +1,14 @@
 package TPComparacióndeArboles;
 
-
 import PilasyColas.StackNode;
 
 /**************************************
      Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo
      Date: 20/04/2021
-     **************************************/
+ **************************************/
+
     public class BlackAndRedTree<T> {
-        private NodoTriple<T> root;
+        private NodoBnR<T> root;
 
         public BlackAndRedTree(){
             root = null;
@@ -21,7 +21,6 @@ import PilasyColas.StackNode;
             }
             root = insert(root, x);
         }
-
 
         // precondicion: elemento a eliminar pertenece al árbol
         public void delete(Comparable <T> x) throws DuplicatedObjectException {
@@ -129,10 +128,9 @@ import PilasyColas.StackNode;
                 return exists(t.der, x);
         }
 
-
-        private NodoTriple<T> insert (NodoTriple<T> t, Comparable <T> x) {
+        private NodoBnR<T> insert(NodoBnR<T> t, Comparable <T> x) {
             if (t == null){
-                t = new NodoTriple<T>();
+                t = new NodoBnR<T>();
                 t.elem = (T) x;
             }
             else if (x.compareTo(t.elem) < 0)

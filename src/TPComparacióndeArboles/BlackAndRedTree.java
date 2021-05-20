@@ -102,14 +102,14 @@ import PilasyColas.StackNode;
                 return getMax(t.der);
         }
 
-        private NodoTriple<T> getMin(NodoTriple<T> t){
+        private NodoBnR<T> getMin(NodoBnR<T> t){
             if (t.izq == null)
                 return t;
             else
                 return getMin(t.izq);
         }
 
-        private NodoTriple<T> search(NodoTriple<T> t, Comparable<T> x){
+        private NodoBnR<T> search(NodoBnR<T> t, Comparable<T> x){
             if (x.compareTo(t.elem)== 0)
                 return t;
             else if (x.compareTo( t.elem)< 0)
@@ -118,7 +118,7 @@ import PilasyColas.StackNode;
                 return search(t.der, x);
         }
 
-        private boolean exists(NodoTriple<T> t, Comparable<T> x) {
+        private boolean exists(NodoBnR<T> t, Comparable<T> x) {
             if (t == null)
                 return false;
             if (x.compareTo(t.elem) == 0)
@@ -143,7 +143,7 @@ import PilasyColas.StackNode;
         }
 
 
-        private NodoTriple<T> delete (NodoTriple<T> t, Comparable<T> x) {
+        private NodoBnR<T> delete(NodoBnR<T> t, Comparable<T> x) {
             if (x.compareTo(t.elem) < 0)
                 t.izq = delete(t.izq, x);
             else if (x.compareTo(t.elem) > 0)
@@ -160,7 +160,7 @@ import PilasyColas.StackNode;
             return t;
         }
 
-        private NodoTriple<T> deleteMin(NodoTriple<T> t){
+        private NodoBnR<T> deleteMin(NodoBnR<T> t){
             if (t.izq != null)
                 t.izq = deleteMin(t.izq);
             else

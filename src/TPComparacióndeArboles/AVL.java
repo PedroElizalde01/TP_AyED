@@ -193,7 +193,7 @@ public class AVL<T> {
         return t;
     }
 
-    private int height(NodoDoble<T> t) {
+    public int height(NodoDoble<T> t) {
         if (t!=null) {
             int heigthLeft = height(t.izq);
             int heightRight = height(t.der);

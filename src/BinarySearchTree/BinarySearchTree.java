@@ -17,9 +17,6 @@ public class BinarySearchTree <T> {
 
     // precondicion: elemento a insertar no pertenece al árbol
     public void insert(Comparable <T> x) throws DuplicatedObjectException {
-        if(exists(x)){
-            throw new DuplicatedObjectException();
-        }
         root = insert(root, x);
     }
 
@@ -167,6 +164,29 @@ public class BinarySearchTree <T> {
         else
             t = t.der;
         return t;
+    }
+    public int height(NodoDoble<T> t) {
+        if (t!=null) {
+            int heigthLeft = height(t.izq);
+            int heightRight = height(t.der);
+            return 1 + Math.max(heigthLeft, heightRight);
+        } else {
+            return -1;
+        }
+    }
+    public NodoDoble<T> getRootOfTree(){
+        return root;
+    }
+    public int amountOfTries(NodoDoble <T> t, Comparable<T> x, int counter) {
+        if (x.compareTo(t.elem) == 0)
+            return counter;
+        else if (x.compareTo(t.elem) < 0) {
+            counter++;
+            return amountOfTries(t.izq, x, counter);
+        } else {
+            counter++;
+            return amountOfTries(t.der, x, counter);
+        }
     }
 }
 

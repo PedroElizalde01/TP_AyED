@@ -2,6 +2,7 @@ package TPComparacióndeArboles;
 
 import BinarySearchTree.BinarySearchTree;
 import PilasyColas.IsEmptyException;
+import BinarySearchTree.DuplicatedObjectException;
 
 public class Main {
     public static void main(String[] args) throws IsEmptyException, DuplicatedObjectException, EmptyException {

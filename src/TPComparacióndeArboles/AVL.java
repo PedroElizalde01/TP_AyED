@@ -163,7 +163,7 @@ public class AVL<T> {
                 aux= doubleWithRightChild(unbalancedNode);
             }
         }
-        if(unbalancedNode==t){
+        if(unbalancedNode==getRootOfTree()){
             return aux;
         }
         return t;

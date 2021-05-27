@@ -1,5 +1,6 @@
 package TPComparacióndeArboles;
 
+import BinarySearchTree.NodoDoble;
 import PilasyColas.IsEmptyException;
 import PilasyColas.StackNode;
 
@@ -326,4 +327,29 @@ import PilasyColas.StackNode;
         }
         return stack;
     }
-}
+    public int height(NodoBnR<T> t) {
+        if (t!=null) {
+            int heigthLeft = height(t.izq);
+            int heightRight = height(t.der);
+            return 1 + Math.max(heigthLeft, heightRight);
+        } else {
+            return -1;
+        }
+    }
+    public NodoBnR<T> getRootOfTree(){
+        return root;
+    }
+
+    public int amountOfTries(NodoBnR <T> t, Comparable<T> x, int counter) {
+        if (x.compareTo(t.elem) == 0)
+            return counter;
+        else if (x.compareTo(t.elem) < 0) {
+            counter++;
+            return amountOfTries(t.izq, x, counter);
+        } else {
+            counter++;
+            return amountOfTries(t.der, x, counter);
+        }
+    }
+    }
+

@@ -27,6 +27,7 @@ import PilasyColas.StackNode;
             }
         }
 
+
         // precondicion: elemento a eliminar pertenece al árbol
         public void delete(Comparable <T> x) throws DuplicatedObjectException {
             if(exists(x)){

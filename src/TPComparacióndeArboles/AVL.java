@@ -26,7 +26,6 @@ public class AVL<T> {
         }
     }
 
-
     // precondicion: elemento a eliminar pertenece al árbol
     public void delete(Comparable<T> x) throws DuplicatedObjectException {
         if (exists(x)) {
@@ -254,5 +253,18 @@ public class AVL<T> {
     {
         k1.der = rotateWithLeftChild( k1.der );
         return rotateWithRightChild( k1 );
+    }
+
+    public NodoDoble<T> getRootOfTree(){
+        return root;
+    }
+
+    public int amountOfTries(NodoDoble<T> t, Comparable<T> x, int counter){
+        if (x.compareTo(t.elem) == 0)
+            return counter;
+        else if (x.compareTo(t.elem) < 0)
+            return amountOfTries(t.izq, x ,++counter);
+        else
+            return amountOfTries(t.der, x,++counter);
     }
 }

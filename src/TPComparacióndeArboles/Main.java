@@ -28,21 +28,61 @@ public class Main {
         Double[] arrayToSearch= {double1,double2,double3,double4,double5,double6,double7,double8,double9,double10};
         printTable(arrayToSearch,avlTree,rbTree,binaryTree);
 
-        long averageTotalTimeAVL = 0;
-        long averageTotalTimeBnR = 0;
-        long averageTotalTimeBinaryTree = 0;
+        double averageTotalTimeAVL = 0;
+        double averageTotalTimeBnR = 0;
+        double averageTotalTimeBinaryTree = 0;
 
-        long avergaeTotalHeightAVL = 0;
-        long avergaeTotalHeightBnR = 0;
-        long avergaeTotalHeightBinaryTree = 0;
+        double averageTotalHeightAVL = 0;
+        double averageTotalHeightBnR = 0;
+        double averageTotalHeightBinaryTree = 0;
 
-        long avergaeTriesAvl = 0;
-        long avergaeTriesBnR = 0;
-        long avergaeTriesBinaryTree = 0;
+        double averageTriesAvl = 0;
+        double averageTriesBnR = 0;
+        double averageTriesBinaryTree = 0;
 
-        for (int i = 0; i < 10; i++) {
+        //e)
+        for (int j = 0; j < 10; j++) {
+            AVLTree<Double> avlTree2= new AVLTree<>();
+            RBTree<Double> rbTree2= new RBTree<>(Math.random() * (100000) + 1);
+            BinarySearchTree<Double> binaryTree2= new BinarySearchTree<Double>();
+            double[] array= getDoubleArray();
+            averageTotalTimeAVL += getAVLTime(avlTree2, array);
+            averageTotalTimeBnR += getBnRTime(rbTree2,array);
+            averageTotalTimeBinaryTree += getBinaryTreeTime(binaryTree2,array);
+            averageTotalHeightAVL += avlTree2.height();
+            averageTotalHeightBnR += rbTree2.height();
+           averageTotalHeightBinaryTree += binaryTree2.height(binaryTree2.getRootOfTree());
 
+            Double doubles1= array[0];
+            Double doubles2= array[10];
+            Double doubles3= array[20];
+            Double doubles4= array[30];
+            Double doubles5= array[40];
+            Double doubles6= array[50];
+            Double doubles7= array[60];
+            Double doubles8= array[70];
+            Double doubles9= array[80];
+            Double doubles10= array[90];
+            Double[] arrayToSearch2= {doubles1,doubles2,doubles3,doubles4,doubles5,doubles6,doubles7,doubles8,doubles9,doubles10};
+
+            for (int i = 0; i < arrayToSearch.length; i++) {
+                averageTriesBinaryTree += binaryTree2.amountOfTries(binaryTree2.getRootOfTree(), arrayToSearch2[i],0);
+                averageTriesAvl += avlTree2.amountOfTries(avlTree2.getRoot(),arrayToSearch2[i],0);
+                averageTriesBnR+= rbTree2.amountOfTries(arrayToSearch2[i]);
+            }
         }
+        System.out.println("Average Time to Build AVL: " + averageTotalTimeAVL/10 + " nanoseconds");
+        System.out.println("Average Time to Build Black and Red tree: " +averageTotalTimeBnR/10+ " nanoseconds");
+        System.out.println("Average Time to Build BinaryTree: " + averageTotalTimeBinaryTree/10 + " nanoseconds");
+
+        System.out.println("Average Total Height AVL: " + averageTotalHeightAVL/10);
+        System.out.println("Average Total Height Black and Red tree: " + averageTotalHeightBnR /10);
+        System.out.println("Average Total Height BinaryTree: " + averageTotalHeightBinaryTree/10);
+
+        System.out.println("Average tries AVL: " + averageTriesAvl/100);
+        System.out.println("Average tries Black and Red tree: " +averageTriesBnR /100);
+        System.out.println("Average tries BinaryTree: " +averageTriesBinaryTree/100);
+
     }
 
     private static void printTable(Double[] arrayToSearch,AVLTree<Double> avlTree, RBTree<Double> rbTree, BinarySearchTree<Double> binaryTree){
@@ -92,5 +132,13 @@ public class Main {
             }
         }
         return System.nanoTime()- initialTimeBinaryTree;
+    }
+    public static double[] getDoubleArray(){
+        double[] doubleArray = new double[1000];
+        for (int i = 0; i < 1000; i++) {
+            double number = (Math.random() * (100000) + 1);
+            doubleArray[i] = number;
+        }
+        return doubleArray;
     }
 }

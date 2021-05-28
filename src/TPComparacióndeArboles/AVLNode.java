@@ -10,16 +10,14 @@ public class AVLNode<T extends Comparable<T>>
     int height;
 
     /* Constructor */
-    public AVLNode()
-    {
+    public AVLNode() {
         left = null;
         right = null;
         data = null;
         height = 0;
     }
     /* Constructor */
-    public AVLNode(T n)
-    {
+    public AVLNode(T n) {
         left = null;
         right = null;
         data = n;

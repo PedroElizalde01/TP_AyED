@@ -4,7 +4,6 @@ import PilasyColas.IsEmptyException;
 import PilasyColas.QueueNode;
 import PilasyColas.StackNode;
 
-import javax.management.Query;
 import java.util.Scanner;
 
 /**************************************

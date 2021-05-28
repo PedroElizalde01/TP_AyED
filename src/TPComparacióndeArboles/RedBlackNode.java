@@ -1,7 +1,5 @@
 package TPComparacióndeArboles;
 
-import java.util.Scanner;
-
 /* Class Node */
 class RedBlackNode<T extends Comparable<T>>
 {

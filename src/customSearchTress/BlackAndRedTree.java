@@ -1,6 +1,5 @@
-package TPComparacióndeArboles;
+package customSearchTress;
 
-import BinarySearchTree.NodoDoble;
 import PilasyColas.IsEmptyException;
 import PilasyColas.StackNode;
 

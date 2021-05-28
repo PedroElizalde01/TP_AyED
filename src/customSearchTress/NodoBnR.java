@@ -1,4 +1,4 @@
-package TPComparacióndeArboles;
+package customSearchTress;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo

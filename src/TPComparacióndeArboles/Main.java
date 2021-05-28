@@ -1,22 +1,14 @@
 package TPComparacióndeArboles;
 
-import BinarySearchTree.BinarySearchTree;
-import PilasyColas.IsEmptyException;
-import BinarySearchTree.DuplicatedObjectException;
-
 public class Main {
-    public static void main(String[] args) throws IsEmptyException, DuplicatedObjectException, EmptyException {
+    public static void main(String[] args) throws DuplicatedObjectException {
         AVLTree<Double> avlTree= new AVLTree<>();
         RBTree<Double> rbTree= new RBTree<>(Math.random() * (100000) + 1);
         BinarySearchTree<Double> binaryTree= new BinarySearchTree<Double>();
-        double[] doubleArray = new double[1000];
-        for (int i = 0; i < 1000; i++) {
-            double number = (Math.random() * (100000) + 1);
-            doubleArray[i] = number;
-        }
-        System.out.println("AVL time difference: "+ getAVLTime(avlTree, doubleArray) );
-        System.out.println("BnR time difference: " + getBnRTime(rbTree,doubleArray));
-        System.out.println("binary tree time difference: " + getBinaryTreeTime(binaryTree,doubleArray));
+        double[] doubleArray = getDoubleArray();
+        System.out.println("AVLTree time difference: "+ getAVLTime(avlTree, doubleArray)+ " nanoseconds" );
+        System.out.println("BnRTree time difference: " + getBnRTime(rbTree,doubleArray) + " nanoseconds");
+        System.out.println("BinaryTree time difference: " + getBinaryTreeTime(binaryTree,doubleArray) + " nanoseconds");
 
         System.out.println("AVL heigth: " + avlTree.height());
         System.out.println("BnRTree heigth: " + rbTree.height());
@@ -54,44 +46,44 @@ public class Main {
     }
 
     private static void printTable(Double[] arrayToSearch,AVLTree<Double> avlTree, RBTree<Double> rbTree, BinarySearchTree<Double> binaryTree){
-        float binaryTries = 0;
-        float avlTries = 0;
-        float rbTries = 0;
+        float totalBinaryTries = 0;
+        float totalAvlTries = 0;
+        float totalRBbTries = 0;
         System.out.println("_______________________________________________");
         System.out.println("|  Número a buscar  |   BST   |   AVL   |   RBT   |");
         for (int i = 0; i < arrayToSearch.length; i++) {
-            float btries = binaryTree.amountOfTries(binaryTree.getRootOfTree(), arrayToSearch[i],0);
-            float atries = avlTree.amountOfTries(avlTree.getRoot(),arrayToSearch[i],0);
-            float brTries = rbTree.amountOfTries(rbTree.getRoot(), arrayToSearch[i],0);
-            System.out.println("| "+arrayToSearch[i]+" |" + btries+ "|"+ atries+"|"+ btries+"|");
-            binaryTries += btries;
-            avlTries += atries;
-            rbTries += brTries;
+            float binaryTries = binaryTree.amountOfTries(binaryTree.getRootOfTree(), arrayToSearch[i],0);
+            float avlTries = avlTree.amountOfTries(avlTree.getRoot(),arrayToSearch[i],0);
+            float rbTries = rbTree.amountOfTries(arrayToSearch[i]);
+            System.out.println("|   "+arrayToSearch[i]+"   |  " + binaryTries+ "  |  "+ avlTries+"  |  "+ rbTries+"  |");
+            totalBinaryTries += binaryTries;
+            totalAvlTries += avlTries;
+            totalRBbTries += rbTries;
         }
         System.out.println("_______________________________________________");
-        System.out.println("Promedio: |" + binaryTries/10 + " |" + avlTries/10 + " |" + rbTries/10+ "|");
+        System.out.println("Promedio: |  " + totalBinaryTries/10 + "  |   " + totalAvlTries/10 + "  |  " + totalRBbTries/10+ "  |");
     }
 
 
 
     public static long getAVLTime(AVLTree<Double> avlTree, double[] doubleArray){
-        long inicialTimeAVl = System.currentTimeMillis();
+        long inicialTimeAVl = System.nanoTime();
         for (int i= 0; i <100 ; i++) {
             avlTree.insert(doubleArray[i]);
         }
-        long timeDifferenceAVL=System.currentTimeMillis()- inicialTimeAVl;
+        long timeDifferenceAVL=System.nanoTime()- inicialTimeAVl;
         return timeDifferenceAVL;
     }
     public static long getBnRTime(RBTree<Double> rbTree, double[] doubleArray){
-        long initialTimeBnR = System.currentTimeMillis();
+        long initialTimeBnR = System.nanoTime();
         for (int i = 0; i < 100; i++) {
             rbTree.insert(doubleArray[i]);
         }
 
-        return System.currentTimeMillis() - initialTimeBnR;
+        return System.nanoTime() - initialTimeBnR;
     }
     public static long getBinaryTreeTime(BinarySearchTree<Double> binaryTree, double[] doubleArray){
-        long initialTimeBinaryTree = System.currentTimeMillis();
+        long initialTimeBinaryTree = System.nanoTime();
         for (int i = 0; i < 100; i++) {
             try {
                 binaryTree.insert(doubleArray[i]);
@@ -99,6 +91,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        return System.currentTimeMillis()- initialTimeBinaryTree;
+        return System.nanoTime()- initialTimeBinaryTree;
     }
 }

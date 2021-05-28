@@ -119,10 +119,11 @@ public class RBTree<T extends Comparable<T>> {
         while ((r != nullNode) && !found)
         {
             T rval = (T)r.element;
-            if (val.compareTo(rval) < 0)
+            if (val.compareTo(rval) < 0){
                 r = r.left;
-            else if (val.compareTo(rval) > 0)
+            } else if (val.compareTo(rval) > 0){
                 r = r.right;
+            }
             else
             {
                 found = true;
@@ -132,74 +133,18 @@ public class RBTree<T extends Comparable<T>> {
         }
         return found;
     }
-    /* Function for inorder traversal */
-    public void inorder()
-    {
-        inorder(header.right);
-    }
-    private void inorder(RedBlackNode r) {
-        if (r != nullNode)
-        {
-            inorder(r.left);
-            char c = 'B';
-            if (r.color == 0)
-                c = 'R';
-            System.out.print(r.element +""+c+" ");
-            inorder(r.right);
-        }
-    }
-    /* Function for preorder traversal */
-    public void preorder()
-    {
-        preorder(header.right);
-    }
-    private void preorder(RedBlackNode r) {
-        if (r != nullNode)
-        {
-            char c = 'B';
-            if (r.color == 0)
-                c = 'R';
-            System.out.print(r.element +""+c+" ");
-            preorder(r.left);
-            preorder(r.right);
-        }
-    }
-    /* Function for postorder traversal */
-    public void postorder()
-    {
-        postorder(header.right);
-    }
-    private void postorder(RedBlackNode r) {
-        if (r != nullNode)
-        {
-            postorder(r.left);
-            postorder(r.right);
-            char c = 'B';
-            if (r.color == 0)
-                c = 'R';
-            System.out.print(r.element +""+c+" ");
-        }
-    }
-    public int amountOfTries(RedBlackNode<T> t, Comparable<T> x, int counter) {
-        if (x.compareTo(t.element) == 0)
-            return counter;
-        else if (x.compareTo(t.element) < 0) {
-            counter++;
-            return amountOfTries(t.left, x, counter);
-        } else {
-            counter++;
-            return amountOfTries(t.right, x, counter);
-        }
-    }
+
 
     public RedBlackNode getRoot() {
         return header;
     }
+
     public int height(){
         return height(header);
     }
+
     public int height(RedBlackNode<T> t) {
-        if (t!=null) {
+        if (t!=nullNode) {
             int heigthLeft = height(t.left);
             int heightRight = height(t.right);
             return 1 + Math.max(heigthLeft, heightRight);
@@ -207,4 +152,27 @@ public class RBTree<T extends Comparable<T>> {
             return -1;
         }
     }
+    public int amountOfTries(T val) {
+        int tries = 0;
+        return amountOfTries(header.right, val,tries);
+    }
+    private int amountOfTries(RedBlackNode r, T val,int tries) {
+        boolean found = false;
+        while ((r != nullNode) && !found) {
+            T rval = (T)r.element;
+            if (val.compareTo(rval) < 0){
+                r = r.left;
+            } else if (val.compareTo(rval) > 0){
+                 r = r.right;
+            } else {
+                found = true;
+                break;
+            }
+            tries++;
+        }
+        return tries;
+    }
+
+
+
 }

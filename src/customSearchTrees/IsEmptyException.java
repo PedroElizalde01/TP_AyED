@@ -1,4 +1,4 @@
-package customSearchTress;
+package customSearchTrees;
 
 /**
  * Exception should be thrown when structure is

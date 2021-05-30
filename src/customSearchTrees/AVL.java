@@ -1,4 +1,4 @@
-package customSearchTress;
+package customSearchTrees;
 
 import PilasyColas.IsEmptyException;
 import PilasyColas.StackNode;
@@ -261,11 +261,16 @@ public class AVL<T> {
     }
 
     public int amountOfTries(NodoDoble<T> t, Comparable<T> x, int counter){
-        if (x.compareTo(t.elem) == 0)
-            return counter;
-        else if (x.compareTo(t.elem) < 0)
-            return amountOfTries(t.izq, x ,++counter);
-        else
-            return amountOfTries(t.der, x,++counter);
+        if(t != null){
+            if (x.compareTo(t.elem) == 0) {
+                return counter;
+            }
+            else if (x.compareTo(t.elem) < 0) {
+                return amountOfTries(t.izq, x ,++counter);
+            }
+            else
+                return amountOfTries(t.der, x,++counter);
+        }
+        return counter;
     }
 }

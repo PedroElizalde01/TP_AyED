@@ -1,4 +1,4 @@
-package customSearchTress;
+package customSearchTrees;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo

@@ -1,28 +1,24 @@
-package customSearchTress;
+package customSearchTrees;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo
  Date: 20/04/2021
  **************************************/
 
-public class NodoBnR<T> {
+public class NodoDoble<T> {
     T elem;
-    boolean isRed;
-    NodoBnR<T> izq, der;
+    NodoDoble<T> izq, der;
 
-    public NodoBnR() {
-        isRed=true;
+    public NodoDoble() {
     }
 
-    public NodoBnR(T elem) {
+    public NodoDoble(T elem) {
         this.elem = elem;
-        isRed=true;
     }
 
-    public NodoBnR(T elem, NodoBnR<T> izq, NodoBnR<T> der) {
+    public NodoDoble(T elem, NodoDoble<T> izq, NodoDoble<T> der) {
         this.elem = elem;
         this.izq = izq;
         this.der = der;
-        isRed=true;
     }
 }

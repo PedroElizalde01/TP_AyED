@@ -1,14 +1,11 @@
-package BinarySearchTree;
-
-
-import TP_Hash.DuplicatedObjectException;
+package TP_Hash;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo
  Date: 20/04/2021
  **************************************/
 
-public class BinarySearchTree <T> {
+public class BinarySearchTree<T> {
 
     private NodoDoble<T> root;
 
@@ -17,13 +14,13 @@ public class BinarySearchTree <T> {
     }
 
     // precondicion: elemento a insertar no pertenece al árbol
-    public void insert(Comparable <T> x) throws DuplicatedObjectException {
+    public void insert(Comparable x) throws DuplicatedObjectException {
         root = insert(root, x);
     }
 
 
     // precondicion: elemento a eliminar pertenece al árbol
-    public void delete(Comparable <T> x) throws DuplicatedObjectException {
+    public void delete(Comparable x) throws DuplicatedObjectException {
         if(exists(x)){
             throw new DuplicatedObjectException();
         }
@@ -39,7 +36,7 @@ public class BinarySearchTree <T> {
     }
 
     // precondicion: árbol distinto de vacío
-    public T getMax()throws EmptyException{
+    public T getMax()throws EmptyException {
         if(isEmpty()){
             throw new EmptyException();
         }
@@ -47,7 +44,7 @@ public class BinarySearchTree <T> {
     }
 
     // precondicion: elemento a buscar pertenece al arbol
-    public T search(Comparable<T> x) throws NewObjectException {
+    public T search(Comparable x) throws NewObjectException {
         if(!exists(x)){
             throw new NewObjectException();
         }
@@ -55,7 +52,7 @@ public class BinarySearchTree <T> {
     }
 
     // precondicion: -
-    public boolean exists(Comparable<T> x){
+    public boolean exists(Comparable x){
         return exists(root, x);
     }
 
@@ -65,7 +62,7 @@ public class BinarySearchTree <T> {
     }
 
     // precondición: árbol distino de vacío
-    public T getRoot() throws EmptyException{
+    public T getRoot() throws EmptyException {
         if(isEmpty()) {
             throw new EmptyException();
         }
@@ -73,17 +70,17 @@ public class BinarySearchTree <T> {
     }
 
     // precondición: árbol distino de vacío
-    public BinarySearchTree<T> getLeft() throws EmptyException{
+    public BinarySearchTree getLeft() throws EmptyException {
         if(isEmpty()) {
             throw new EmptyException();
         }
-        BinarySearchTree<T> t = new BinarySearchTree<T>();
+        BinarySearchTree t = new BinarySearchTree();
         t.root = root.izq;
         return t;
     }
 
     // precondición: árbol distino de vacío
-    public BinarySearchTree<T> getRight() throws  EmptyException{
+    public BinarySearchTree<T> getRight() throws EmptyException {
         if (isEmpty()){
             throw new EmptyException();
         }
@@ -94,21 +91,21 @@ public class BinarySearchTree <T> {
 
 
     // METODOS PRIVADOS
-    private NodoDoble<T> getMax(NodoDoble <T> t){
+    private NodoDoble<T> getMax(NodoDoble<T> t){
         if (t.der == null)
             return t;
         else
             return getMax(t.der);
     }
 
-    private NodoDoble <T> getMin(NodoDoble <T> t){
+    private NodoDoble<T> getMin(NodoDoble<T> t){
         if (t.izq == null)
             return t;
         else
             return getMin(t.izq);
     }
 
-    private NodoDoble <T> search(NodoDoble <T> t, Comparable<T> x){
+    private NodoDoble<T> search(NodoDoble<T> t, Comparable x){
         if (x.compareTo(t.elem)== 0)
             return t;
         else if (x.compareTo( t.elem)< 0)
@@ -117,7 +114,7 @@ public class BinarySearchTree <T> {
             return search(t.der, x);
     }
 
-    private boolean exists(NodoDoble <T> t, Comparable<T> x) {
+    private boolean exists(NodoDoble<T> t, Comparable x) {
         if (t == null)
             return false;
         if (x.compareTo(t.elem) == 0)
@@ -129,7 +126,7 @@ public class BinarySearchTree <T> {
     }
 
 
-    private NodoDoble<T> insert (NodoDoble <T> t, Comparable <T> x) {
+    private NodoDoble<T> insert (NodoDoble<T> t, Comparable x) {
         if (t == null){
             t = new NodoDoble<T>();
             t.elem = (T) x;
@@ -142,7 +139,7 @@ public class BinarySearchTree <T> {
     }
 
 
-    private NodoDoble<T> delete (NodoDoble<T> t, Comparable<T> x) {
+    private NodoDoble<T> delete (NodoDoble<T> t, Comparable x) {
         if (x.compareTo(t.elem) < 0)
             t.izq = delete(t.izq, x);
         else if (x.compareTo(t.elem) > 0)
@@ -178,7 +175,7 @@ public class BinarySearchTree <T> {
     public NodoDoble<T> getRootOfTree(){
         return root;
     }
-    public int amountOfTries(NodoDoble <T> t, Comparable<T> x, int counter) {
+    public int amountOfTries(NodoDoble<T> t, Comparable x, int counter) {
         if (x.compareTo(t.elem) == 0)
             return counter;
         else if (x.compareTo(t.elem) < 0) {

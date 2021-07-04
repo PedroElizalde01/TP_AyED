@@ -37,8 +37,7 @@ public class BinaryTreeAPI <T> {
         if (a.isEmpty())
             return 0;
         if (a.getRoot().equals(o))
-            return
-                    1 + ocurrenciesOf(a.getLeft(), o) + ocurrenciesOf(a.getRight(), o);
+            return 1 + ocurrenciesOf(a.getLeft(), o) + ocurrenciesOf(a.getRight(), o);
         else
             return ocurrenciesOf(a.getLeft(), o) + ocurrenciesOf(a.getRight(), o);
     }
@@ -306,5 +305,10 @@ public class BinaryTreeAPI <T> {
                 auxQueue.enqueue(auxTree.getRight());
             }
         }
+    }
+    public static BinaryTree<Integer> reflexBT(BinaryTree<Integer> tree){
+        if (tree.isEmpty()) return new BinaryTree<Integer>();
+        BinaryTree<Integer> b = new BinaryTree<Integer>(tree.getRoot(),reflexBT(tree.getRight()),reflexBT(tree.getLeft()));
+        return b;
     }
 }

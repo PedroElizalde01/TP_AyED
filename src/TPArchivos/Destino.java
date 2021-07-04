@@ -12,8 +12,4 @@ public class Destino {
     public String getDestinyCode() {
         return destinyCode;
     }
-
-    public String getDescription() {
-        return description;
-    }
 }

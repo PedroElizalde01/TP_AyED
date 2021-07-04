@@ -4,7 +4,7 @@ import PilasyColas.IsEmptyException;
 import TPComparacióndeArboles.BinarySearchTree;
 import TPComparacióndeArboles.DuplicatedObjectException;
 
-public class Main {
+public class newMain {
     public static void main(String[] args) throws TPComparacióndeArboles.DuplicatedObjectException, customSearchTrees.DuplicatedObjectException, IsEmptyException {
         AVL<Double> avlTree= new AVL<>();
         BlackAndRedTree<Double> rbTree= new BlackAndRedTree<>();

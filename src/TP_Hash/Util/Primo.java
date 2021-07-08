@@ -1,4 +1,4 @@
-package TP_Hash;
+package TP_Hash.Util;
 
 public class Primo {
     public static boolean esPrimo(int n) {

@@ -1,4 +1,4 @@
-package TP_Hash;
+package TP_Hash.Util;
 
 public class DynamicList<T> implements ListInterface<T> {
     private Node<T> head, window, sentinel;

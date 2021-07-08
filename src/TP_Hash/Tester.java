@@ -1,9 +1,12 @@
 package TP_Hash;
 
-public class prueba implements Hashable, Comparable{
+import TP_Hash.Util.Comparable;
+import TP_Hash.Util.Hashable;
+
+public class Tester implements Hashable, Comparable {
         Integer codigo;
         String nombre;
-        public prueba(int codigo, String nombre){
+        public Tester(int codigo, String nombre){
             this.codigo = codigo;
             this.nombre = nombre;
         }

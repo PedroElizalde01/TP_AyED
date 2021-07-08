@@ -1,12 +1,12 @@
 package TP_Hash;
 
-public class MainPrueba {
+public class MainTester {
     public static void main(String[] args) {
-        prueba a = new prueba(28, "a");
-        prueba b = new prueba(39, "b");
-        prueba c = new prueba(3, "c");
-        prueba d = new prueba(20, "d");
-        prueba f= new prueba(0,"2");
+        Tester a = new Tester(28, "a");
+        Tester b = new Tester(39, "b");
+        Tester c = new Tester(3, "c");
+        Tester d = new Tester(20, "d");
+        Tester f= new Tester(0,"2");
         HashTableLineal hashTableOpen = new HashTableLineal(10);
         hashTableOpen.insertar(a);
         hashTableOpen.insertar(b);

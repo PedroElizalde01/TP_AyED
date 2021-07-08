@@ -1,4 +1,4 @@
-package TP_Hash;
+package TP_Hash.Util;
 
 public interface GeneralListInterface<T> {
     void remove();

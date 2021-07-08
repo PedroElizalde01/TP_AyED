@@ -1,5 +1,11 @@
 package TP_Hash;
 
+import TP_Hash.Util.BinarySearchTree;
+import TP_Hash.Util.Comparable;
+import TP_Hash.Util.DuplicatedObjectException;
+import TP_Hash.Util.Hashable;
+import TP_Hash.Util.Primo;
+
 public class HashTableLineal {
 
         private Object[] t;
@@ -42,7 +48,7 @@ public class HashTableLineal {
         public Object buscar (Object x) {
             int k = ((Hashable) x).hashCode(capacidad);
             for (int i = k ; i < capacidad ; i ++ )
-                if (((Comparable) x).compareTo(t[k])== 0)
+                if (((TP_Hash.Util.Comparable) x).compareTo(t[k])== 0)
                     return t[k];
             return x;
         }

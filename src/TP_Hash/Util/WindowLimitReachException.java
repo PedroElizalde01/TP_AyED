@@ -1,4 +1,4 @@
-package TP_Hash;
+package TP_Hash.Util;
 
 public class WindowLimitReachException extends Exception {
     public WindowLimitReachException(){

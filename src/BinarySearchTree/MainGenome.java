@@ -1,6 +1,6 @@
 package BinarySearchTree;
 
-import TP_Hash.DuplicatedObjectException;
+import TP_Hash.Util.DuplicatedObjectException;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo

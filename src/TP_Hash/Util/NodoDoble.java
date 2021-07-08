@@ -1,4 +1,4 @@
-package TP_Hash;
+package TP_Hash.Util;
 
 /**************************************
  Author/s: Timoteo Sanchez Varsallona, Juan Pablo Senmartin, Pedro Elizalde Acevedo

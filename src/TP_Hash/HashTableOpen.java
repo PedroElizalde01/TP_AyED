@@ -27,14 +27,10 @@ public class HashTableOpen {
         t[k].insertNext(x);
     }
 
-    public Object buscar (Object x) {
+    public DynamicList buscar(Object x) {
+        //busca y devuelve la lista en la que esta el objeto x
         int k = ((Hashable) x).hashCode(capacidad);
-        t[k].goFirst();
-        int l = t[k].size();
-        for (int i = 0 ; i < l ; i ++ )
-            if (((Comparable) x).compareTo(t[k].getActual())== 0)
-                return t[k].getActual();
-        return x;
+        return t[k];
     }
 
     public BinarySearchTree<Object> obtenerArBinBus() throws DuplicatedObjectException {
@@ -56,13 +52,13 @@ public class HashTableOpen {
         int k = ((Hashable) x).hashCode(capacidad);
         t[k].goFirst();
         int l = t[k].size();
-        for (int i = 0 ; i < l ; i ++ )
-            if (((Comparable) x).compareTo(t[k].getActual())== 0)
+        for (int i = 0; i < l; i++)
+            if (x.equals(t[k].getActual()))
                 t[k].remove();
         return t;
     }
 
-    public boolean exists(Object x){
+    public boolean exists(Object x) {
         int k = ((Hashable) x).hashCode(capacidad);
         t[k].goFirst();
         int l = t[k].size();
